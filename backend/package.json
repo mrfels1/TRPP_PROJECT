@@ -1,0 +1,19 @@
+{
+  "name": "trpp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./process.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "process": "^0.11.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.28"
+  }
+}

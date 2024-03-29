@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
 
 
 //Выводит главную страницу со всеми постами
@@ -14,7 +15,7 @@ Route::get(
             'homepage',
             [
                 'heading' => 'Homepage',
-                'posts' => Post::all(),
+                'posts' => Post::all()
             ]
         );
     }

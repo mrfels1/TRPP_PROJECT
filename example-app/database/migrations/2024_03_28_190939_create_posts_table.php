@@ -16,9 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('tags');
             $table->string('author_id');
-            $table->string('upvotes');
-            $table->string('downvotes');
-            $table->string('commentaries');
+            $table->integer('upvotes');
+            $table->integer('downvotes');
             $table->text('text_content');
             $table->timestamps();
         });

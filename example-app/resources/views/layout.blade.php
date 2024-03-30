@@ -9,7 +9,9 @@
 
     <body>
         <h1>Mindle</h1>
-        {{-- VIEW OUTPUT --}}
+        {{-- VIEW OUTPUT 
+            TODO: Layout 
+            --}}
         @yield('content')
     </body>
 

@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'title' => 'Automatically created post',
             'tags' => 'Helldivers, Test post',
-            'author_id' => 1,
             'upvotes'   => 9999,
+            'user_id' => 1,
             'downvotes' => '1',
             'text_content' => 'ВАЖНОЕ СООБЩЕНИЕ — ВООРУЖЕННЫЕ СИЛЫ СУПЕР-ЗЕМЛИ
                                 Свобода. Мир. Демократия.
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         Post::create([
             'title' => 'Automatically created post two',
             'tags' => 'Helldivers, Test post',
-            'author_id' => '1',
+            'user_id' => 1,
             'upvotes'   => 0,
             'downvotes' => 999,
             'text_content' => 'Автоматоны наши друзья, мы должны прекратить сражаться'

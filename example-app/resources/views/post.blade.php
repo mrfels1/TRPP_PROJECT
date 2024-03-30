@@ -1,3 +1,7 @@
+@extends ('layout')
+
+@section('content')
+
 {{-- Вывод одного поста по id --}}
 <h2>
     {{$post['title']}}
@@ -22,3 +26,4 @@
         <th>[▼] {{$post['downvotes']}}</th>
     </tr>
 </table>
+@endsection

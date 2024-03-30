@@ -19,7 +19,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'tags' => 'test, post',
-            'author_id' => 1,
+            'user_id' => 1,
             'upvotes' => $this->faker->numberBetween(1, 10000),
             'downvotes' => $this->faker->numberBetween(1, 10000),
             'text_content' => $this->faker->paragraph(3)

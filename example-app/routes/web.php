@@ -12,9 +12,9 @@ Route::get(
     '/',
     function () {
         return view(
-            'homepage',
+            'posts',
             [
-                'heading' => 'Homepage',
+                'heading' => 'All posts',
                 'posts' => Post::all()
             ]
         );

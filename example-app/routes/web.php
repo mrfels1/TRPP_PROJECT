@@ -1,36 +1,20 @@
 <?php
 
-use App\Models\Post;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-//Выводит главную страницу со всеми постами
-//Передавая переменные heading и posts
-Route::get(
-    '/',
-    function () {
-        return view(
-            'posts',
-            [
-                'heading' => 'All posts',
-                'posts' => Post::all()
-            ]
-        );
-    }
-);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-//Выводит страницу с данными из поста
-//Передавая переменные post
-Route::get(
-    '/post/{id}',
-    function ($id) {
-        return view(
-            'post',
-            [
-                'post' => Post::find($id)
-            ]
-        );
-    }
-);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

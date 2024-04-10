@@ -14,12 +14,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('tags');
+            $table->string('title')->default("No title");
+            $table->string('tags')->default("No tags");
             $table->foreignIdFor(User::class)->constrained();
-            $table->integer('upvotes');
-            $table->integer('downvotes');
-            $table->text('text_content');
+            $table->integer('upvotes')->default(0);
+            $table->integer('downvotes')->default(0);
+            $table->text('text_content')->default("nothing");
             $table->timestamps();
         });
     }

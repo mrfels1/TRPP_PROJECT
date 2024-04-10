@@ -2,14 +2,9 @@
 
 @section('content')
 
-
-<h1>
-    {{$heading}}
-</h1>
-
 @unless(count($posts) == 0)
 
-{{-- Вывод всех постов из запроса --}}
+{{-- Вывод всех постов из запроса. Управляется из web.php "route /posts" --}}
 
 @foreach($posts as $post)
 <h2>

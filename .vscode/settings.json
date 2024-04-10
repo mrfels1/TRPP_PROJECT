@@ -10,5 +10,11 @@
       "username": "defuser",
       "password": "123Enot321"
     }
-  ]
+  ],
+  "files.associations": {
+    "*.blade.php": "html"
+  },
+  "emmet.includeLanguages": {
+    "blade": "html"
+  }
 }

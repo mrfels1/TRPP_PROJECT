@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //User::factory(10)->create();
+        User::factory(19)->create();
 
         User::factory()->create([
             'name' => 'Test User',
@@ -42,6 +42,6 @@ class DatabaseSeeder extends Seeder
             'downvotes' => 999,
             'text_content' => 'Автоматоны наши друзья, мы должны прекратить сражаться'
         ]);
-        Post::factory(5)->create();
+        Post::factory(500)->create();
     }
 }

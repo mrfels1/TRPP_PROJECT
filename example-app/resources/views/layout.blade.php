@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mindle</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <body>
-        <h1>Mindle</h1>
-        {{-- VIEW OUTPUT 
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Привязка css и js с помощью vite -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+@include('layouts.navigation')
+
+<!-- Page Heading -->
+@if (isset($header))
+<header class="bg-white dark:bg-gray-800 shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        {{ $header }}
+    </div>
+</header>
+@endif
+
+<body>
+    <h1 class="bg-white dark:bg-gray-800 shadow">Mindle</h1>
+    {{-- VIEW OUTPUT 
             TODO: Layout 
             --}}
-        @yield('content')
-    </body>
+    @yield('content')
+</body>
 
 </html>

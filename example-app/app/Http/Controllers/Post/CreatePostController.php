@@ -32,7 +32,7 @@ class CreatePostController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:255', 'unique:' . Post::class],
+            'title' => ['required', 'string', 'max:255'],
             'tags' => ['required', 'string', 'max:127', 'regex:/^[a-zA-ZА-Яа-я0-9]+(,\s*[a-zA-ZА-Яа-я0-9]*)*$/u'],
             'text_content' => ['required', 'string', 'max:4095'],
         ]);

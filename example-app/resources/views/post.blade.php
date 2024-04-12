@@ -26,3 +26,4 @@
         <th>[▼] {{$post['downvotes']}}</th>
     </tr>
 </table>
+@endsection

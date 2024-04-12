@@ -7,11 +7,11 @@
     {{$post['title']}}
 </h2>
 
-{{-- Придумать вывод автора поста
+
 <p>
     Автор: {{$user=User::find[1]}}
 </p>
---}}
+
 
 
 <p>
@@ -26,4 +26,3 @@
         <th>[▼] {{$post['downvotes']}}</th>
     </tr>
 </table>
-@endsection

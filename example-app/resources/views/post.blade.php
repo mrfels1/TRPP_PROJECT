@@ -2,6 +2,8 @@
 
 @section('content')
 
+use App\Models\Post;
+
 {{-- Вывод одного поста по id --}}
 <h2>
     {{$post['title']}}

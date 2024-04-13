@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Post\CreatePostController;
@@ -27,10 +28,12 @@ Route::get('/posts', function () {
     $posts = Post::all();
     return view('posts', compact('posts'));
 })->name('posts');
+
 //Перейти на страницу поста
 Route::get('/post/{id}', function (string $id) {
     $post = Post::find($id);
-    return view('post', compact('post'));;
+    $user = User::find($post->user_id);
+    return view('post', compact('post', 'user'));
 });
 
 Route::middleware('auth')->group(function () {

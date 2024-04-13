@@ -25,7 +25,7 @@ Route::post('createpost', [CreatePostController::class, 'store']);
 
 //Перейти на страницу постов
 Route::get('/posts', function () {
-    $posts = Post::lazy();
+    $posts = Post::lazy(); //TODO: Связать post с user + вывод авторов каждого поста на этой странице
     return view('posts', compact('posts'));
 })->name('posts');
 

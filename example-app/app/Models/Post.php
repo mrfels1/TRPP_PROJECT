@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'tags', 'text_content', 'user_id'];
+    protected $fillable = ['title', 'tags', 'text_content', 'user_id']; // FIXME: user_id как fillable это опасная уязвимость, исправить
+
     public function user(): HasOne
     {
         return $this->hasOne(User::class);

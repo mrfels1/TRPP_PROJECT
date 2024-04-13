@@ -25,7 +25,7 @@ Route::post('createpost', [CreatePostController::class, 'store']);
 
 //Перейти на страницу постов
 Route::get('/posts', function () {
-    $posts = Post::all();
+    $posts = Post::lazy();
     return view('posts', compact('posts'));
 })->name('posts');
 

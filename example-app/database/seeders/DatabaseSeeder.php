@@ -14,19 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(19)->create();
-
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        /*User::factory(19)->create();*/
+
 
         Post::create([
             'title' => 'Automatically created post',
             'tags' => 'Helldivers, Test post',
-            'upvotes'   => 9999,
             'user_id' => 1,
-            'downvotes' => '1',
             'text_content' => 'ВАЖНОЕ СООБЩЕНИЕ — ВООРУЖЕННЫЕ СИЛЫ СУПЕР-ЗЕМЛИ
                                 Свобода. Мир. Демократия.
                                 Ваши права граждан Супер-Земли — основы нашей цивилизации.
@@ -34,14 +32,14 @@ class DatabaseSeeder extends Seeder
                                 Но война продолжается. И вновь всему, что нас окружает, грозит опасность.
                                 Вступите в величайшую армию в истории и сделайте галактику безопасной и свободной.'
         ]);
+        /*
         Post::create([
             'title' => 'Automatically created post two',
             'tags' => 'Helldivers, Test post',
             'user_id' => 1,
-            'upvotes'   => 0,
-            'downvotes' => 999,
             'text_content' => 'Автоматоны наши друзья, мы должны прекратить сражаться'
         ]);
         Post::factory(500)->create();
+        */
     }
 }

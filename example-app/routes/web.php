@@ -4,6 +4,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\Post\CreatePostController;
 
 //Главная страница
@@ -42,4 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Лайкнуть пост
+
+Route::post('/post/{id}/like', [PostLikesController::class, 'store'])->name('post.like');
+Route::delete('/post/{id}/like', [PostLikesController::class, 'destroy'])->name('post.destroy');
+Route::post('/post/{id}/dislike', [PostLikesController::class, 'dislike'])->name('post.dislike');
 require __DIR__ . '/auth.php';

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->default("No title");
-            $table->string('tags')->default("No tags");
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->text('text_content')->default("nothing");
+            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
+            $table->boolean('liked');
             $table->timestamps();
+
+            $table->unique(['user_id', 'post_id']);
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('likes');
     }
 };

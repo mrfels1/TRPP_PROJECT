@@ -47,5 +47,4 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/post/{id}/like', [PostLikesController::class, 'store'])->name('post.like');
 Route::delete('/post/{id}/like', [PostLikesController::class, 'destroy'])->name('post.destroy');
-Route::post('/post/{id}/dislike', [PostLikesController::class, 'dislike'])->name('post.dislike');
 require __DIR__ . '/auth.php';

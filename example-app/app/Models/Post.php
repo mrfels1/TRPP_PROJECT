@@ -2,37 +2,52 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\WithLikes;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\Scopes\WithLikesandComments;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-#[ScopedBy([WithLikes::class])]
+#[ScopedBy([WithLikesandComments::class])]
 class Post extends Model
 {
     use HasFactory;
     protected $fillable = ['title', 'tags', 'text_content', 'user_id']; // FIXME: user_id как fillable это опасная уязвимость, исправить
 
+    public function getUserName() //utility
+    {
+        return User::find($this->user_id)->name;
+    }
+
     public function user(): HasOne
     {
         return $this->hasOne(User::class);
     }
+
+    //comments
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function getUserName()
+    public function comment($user = null, $text_content)
     {
-        return User::find($this->user_id)->name;
+        $this->comments()->create(
+            [
+                'user_id' => $user ? $user->id : auth()->id(),
+                'text_content' => $text_content
+            ]
+        );
+    }
+    public function getAllComments() //utility
+    {
+        return $this->comments()->get();
     }
 
-
-
-
+    //Likes
     public function like($user = null, $liked = true)
     {
         $this->likes()->updateOrCreate(

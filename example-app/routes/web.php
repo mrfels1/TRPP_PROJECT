@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostLikesController;
+use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\Post\CreatePostController;
 
 //Главная страница
@@ -44,7 +45,11 @@ Route::middleware('auth')->group(function () {
 });
 
 //Лайкнуть пост
-
 Route::post('/post/{id}/like', [PostLikesController::class, 'store'])->name('post.like');
 Route::delete('/post/{id}/like', [PostLikesController::class, 'destroy'])->name('post.destroy');
+
+//Сделать комментарий
+Route::post('/post/{id}/comment', [PostCommentsController::class, 'store'])->name('comment.make');
+Route::delete('/post/{id}/comment/{com_id}', [PostCommentsController::class, 'destroy'])->name('comment.destroy'); //TODO: Сделать удаление комментов
+
 require __DIR__ . '/auth.php';

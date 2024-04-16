@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Comment extends Model
 {
     use HasFactory;
-
-    public function post(): BelongsTo
+    protected $guarded = [];
+    public function getUserName() //utility
     {
-        return $this->belongsTo(Post::class);
+        return User::find($this->user_id)->name;
     }
 }

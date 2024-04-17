@@ -17,6 +17,13 @@
                     </x-nav-link>
                 </div>
             </div>
+            <!-- Поиск -->
+            <div class="inline-flex items-center">
+                <form action="{{route('posts')}}" method="GET">
+                    <input name="search" placeholder="..." type="text" style="width: 400px">
+                    <button class="btn" style="color:white;">Поиск</button>
+                </form>
+            </div>
             @if (Auth::check())
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

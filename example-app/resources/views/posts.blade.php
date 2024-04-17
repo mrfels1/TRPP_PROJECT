@@ -56,13 +56,13 @@
 @foreach($posts as $post)
 <div class="post">
     <h2 class="title">
-        <a href="/post/{{$post['id']}}">{{$post['title']}}</a>
+        <a href="/post/{{$post->id}}">{{$post->title}}</a>
     </h2>
     <h3 class="text_content">
         Автор: {{$post->getUserName()}}
     </h3>
     <p class="text_content">
-        {{$post['text_content']}}
+        {{$post->text_content}}
     </p>
     @if (Auth::check())
     <div class="center table">

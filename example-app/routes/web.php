@@ -3,6 +3,7 @@
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\PostCommentsController;
@@ -26,10 +27,15 @@ Route::get('createpost', [CreatePostController::class, 'create'])
 Route::post('createpost', [CreatePostController::class, 'store']);
 
 //Перейти на страницу постов
+/*
 Route::get('/posts', function () {
-    $posts = Post::lazy(); //TODO: Связать post с user + вывод авторов каждого поста на этой странице
+    $posts = Post::lazy();
     return view('posts', compact('posts'));
 })->name('posts');
+*/
+
+Route::get('/posts', [PostsController::class, 'index'])->name('posts');
+
 
 //Перейти на страницу поста
 Route::get('/post/{id}', function (string $id) {

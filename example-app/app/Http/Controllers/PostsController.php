@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
+#[OpenApi\PathItem]
 class PostsController extends Controller
 {
-    //проверка на поиск
 
+    /**
+     * Проверка на поиск.
+     *
+     * Возвращает view постов, по условию поиска если таковое имеется.
+     */
+    #[OpenApi\Operation]
     public function index()
     {
 

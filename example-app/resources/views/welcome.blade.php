@@ -75,7 +75,7 @@
         <div class="top-right links">
             <!-- Проверяет залогинен ли пользователь -->
             @if (Auth::check())
-            <a href="{{ url('/createpost') }}">Create Post</a>
+            <a href="{{ route('post.createpost')}}">Create Post</a>
             <!--TODO:-->
             <a href="{{ url('/dashboard') }}">Dashboard</a>
             @else

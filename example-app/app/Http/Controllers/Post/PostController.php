@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-class CreatePostController extends Controller
+class PostController extends Controller
 {
     /**
      * Display the registration view.
@@ -48,9 +49,15 @@ class CreatePostController extends Controller
         ]);
 
         //event(new Registered($user)); //Ивент при создании поста
-
-
-
         return redirect(route('posts'));
+    }
+    public function destroy($id): RedirectResponse
+    {
+        $user_id = Auth::id();
+        $post = Post::find($id);
+        if ($post && ($post->user_id == $user_id)) {
+            $post->delete();
+        }
+        return Redirect::to('/posts');
     }
 }

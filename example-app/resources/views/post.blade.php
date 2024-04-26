@@ -60,6 +60,19 @@
     <h3 class="text_content">
         Автор: {{$post->getUserName()}}
     </h3>
+    {{-- Удаление поста --}}
+    @if (Auth::check() and (Auth::id() == $post->user_id))
+    <h3 class="text_content">
+        <form action="{{route('post.delete', $post->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" style="color: red;">
+                X
+            </button>
+        </form>
+    </h3>
+    @endif
+
     <p class="text_content">
         {{$post['text_content']}}
     </p>
@@ -117,6 +130,17 @@
     <h3 class="text_content">
         Автор: {{$comment->getUserName()}}
     </h3>
+    @if (Auth::check() and (Auth::id() == $comment->user_id))
+    <h3 class="text_content">
+        <form action="{{route('comment.destroy', $comment->id)}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" style="color: red;">
+                X
+            </button>
+        </form>
+    </h3>
+    @endif
     <p class="text_content">
         {{$comment->text_content}}
     </p>

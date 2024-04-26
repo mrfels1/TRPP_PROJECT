@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PostCommentsController extends Controller
 {
@@ -17,11 +19,14 @@ class PostCommentsController extends Controller
         $post->comment(Auth()->user(), $text_content);
         return back();
     }
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $post = Post::find($request->id);
-        $comment = Comment::where($request->post_id);
-        $comment->delete();
-        return back();
+        $user_id = Auth::id();
+        $comment = Comment::find($id);
+        $post_id = $comment->post_id;
+        if ($comment && ($comment->user_id == $user_id)) {
+            $comment->delete();
+        }
+        return Redirect::to('/post/' . $post_id);
     }
 }

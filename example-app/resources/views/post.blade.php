@@ -9,7 +9,7 @@
 
 {{--
 <p>
-    Автор: {{$user=User::find[1]}}
+    Автор: {{$user=app\Models\User::find[$post['user_id']]}}
 </p>
 --}}
 

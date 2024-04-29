@@ -17,47 +17,41 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 class PostController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
+
     public function create(): View
     {
         return view('post.createpost');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+
     public function store(Request $request): RedirectResponse
     {
+        // Проверка на условия
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'tags' => ['required', 'string', 'max:127', 'regex:/^[a-zA-ZА-Яа-я0-9]+(,\s*[a-zA-ZА-Яа-я0-9]*)*$/u'],
             'text_content' => ['required', 'string', 'max:4095'],
         ]);
-        //$output = new ConsoleOutput();
 
-        //$output->writeln("<info>Id:*$id*</info>");
-        $id = Auth::id();
-        $post = Post::create([
+
+        $id = Auth::id(); //id пользователя отправившего запрос на создание поста
+        $post = Post::create([ //создает в бд новую запись с id = id+1 от послднего и заполняет остальные поля
             'title' => $request->title,
             'tags' => "$request->tags",
             'text_content' => $request->text_content,
             'user_id' => $id,
         ]);
 
-        //event(new Registered($user)); //Ивент при создании поста
-        return redirect(route('posts'));
+        //event(new Registered($user)); //Ивент при создании поста (не используется)
+        return redirect(route('posts')); //Вызов пути posts (см. web.php)
     }
-    public function destroy($id): RedirectResponse
+    public function destroy($id): RedirectResponse //DELETE запрос
     {
         $user_id = Auth::id();
         $post = Post::find($id);
-        if ($post && ($post->user_id == $user_id)) {
+        if ($post && ($post->user_id == $user_id)) { //Проверка на то, что только автор поста может его удалить
             $post->delete();
         }
-        return Redirect::to('/posts');
+        return Redirect::to('/posts'); // Аналогичен вызову пути выше
     }
 }

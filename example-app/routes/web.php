@@ -9,37 +9,39 @@ use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\Post\PostController;
 
+
+// view('welcome'); аналог inertia::render
 //Главная страница
-Route::get('/', function () {
-    return view('welcome');
-})->name('main');;
+Route::get('/', function () {   // GET запрос по адресу /,  
+    return view('welcome');     // сервер отправит пользователю php файл welcome.blade.php,
+})->name('main');;              // альтернативное имя пути - main
 
 
 //Перейти в профиль
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {                      // GET запрос по адресу /dashboard,  
+    return view('dashboard');                               // сервер отправит пользователю php файл dashboard.blade.php,
+})->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
 
 //Создать и удалить пост
-Route::get('createpost', [PostController::class, 'create'])
-    ->name('post.createpost');
-Route::post('createpost', [PostController::class, 'store'])->name('post.store');
-Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.delete');
+Route::get('createpost', [PostController::class, 'create']) // GET запрос по адресу /createpost, 
+    ->name('post.createpost');                              // выполнит функцию create класса PostController  
+Route::post('createpost', [PostController::class, 'store'])->name('post.store'); // POST запрос, выполнит store класса PostController
+Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.delete'); // DELETE запрос, выполнит delete класса PostController
 
 
 //Перейти на страницу постов
-Route::get('/posts', [PostsController::class, 'index'])->name('posts');
+Route::get('/posts', [PostsController::class, 'index'])->name('posts'); // GET запрос по адресу /posts
 
 
 //Перейти на страницу поста
-Route::get('/post/{id}', function (string $id) {
-    $post = Post::find($id);
-    $user = User::find($post->user_id);
-    return view('post', compact('post', 'user'));
+// ШАГ 1 -> post.blade.php строка 57
+Route::get('/post/{id}', function (string $id) {    // GET запрос по адресу /post/{id} (id указывается в ссылке прим. 127.0.0.1:8000/post/2)
+    $post = Post::findOrFail($id);                  // Находим в бд строку Post'а по id из запроса 
+    return view('post', compact('post'));   // Передача пользователю странцы post с переданным в неё post 
 });
 
 
-
+// Аунтетификация (не моё (автоматически сгенерированно))
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -51,7 +53,7 @@ Route::post('/post/{id}/like', [PostLikesController::class, 'store'])->name('pos
 Route::delete('/post/{id}/like', [PostLikesController::class, 'destroy'])->name('post.destroy');
 
 //Сделать комментарий
-Route::post('/post/{id}/comment', [PostCommentsController::class, 'store'])->name('comment.make');
-Route::delete('/post/{id}/comment', [PostCommentsController::class, 'destroy'])->name('comment.destroy'); //TODO: Сделать удаление комментов
+Route::post('/post/{id}/comment', [PostCommentsController::class, 'store'])->name('comment.make'); // ШАГ 4 -> app/Http/Controllers/PostComments/Controller
+Route::delete('/post/{id}/comment', [PostCommentsController::class, 'destroy'])->name('comment.destroy');
 
 require __DIR__ . '/auth.php';

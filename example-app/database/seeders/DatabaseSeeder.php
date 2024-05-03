@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         ]);
         Post::create([
             'title' => 'Automatically created post',
-            'tags' => 'Helldivers, Test post',
             'user_id' => 1,
             'text_content' => 'ВАЖНОЕ СООБЩЕНИЕ — ВООРУЖЕННЫЕ СИЛЫ СУПЕР-ЗЕМЛИ
                                 Свобода. Мир. Демократия.
@@ -35,19 +34,16 @@ class DatabaseSeeder extends Seeder
         ]);
         Post::create([
             'title' => 'Automatically created post two',
-            'tags' => 'Helldivers, Test post',
             'user_id' => 1,
             'text_content' => 'Автоматоны наши друзья, мы должны прекратить сражаться'
         ]);
         Post::create([
             'title' => 'zAutomatically created post three',
-            'tags' => 'Helldivers, Test post',
             'user_id' => 1,
             'text_content' => 'Автоматоны наши друзья, мы должны прекратить сражаться'
         ]);
         Post::create([
             'title' => 'cAutomatically created post four',
-            'tags' => 'Helldivers, Test post',
             'user_id' => 1,
             'text_content' => 'Автоматоны наши друзья, мы должны прекратить сражаться'
         ]);

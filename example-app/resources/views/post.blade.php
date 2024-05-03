@@ -65,6 +65,12 @@
         Автор: {{$post->getUserName()}} {{-- Вывод имени автора поста выполняется функцией getUserName, 
             которая расположена в app/Http/Models/Post--}}
     </h3>
+    <h3 class="center">
+        @foreach($post->getAllTags() as $tag)
+        <span>{{$tag->text_content}}</span>
+        @endforeach
+    </h3>
+
     {{-- Удаление поста --}}
     @if (Auth::check() and ((Auth::id() == $post->user_id or Auth::user()->is_admin)))
     {{-- Проверка залогинен ли пользователь и является ли он автором --}}

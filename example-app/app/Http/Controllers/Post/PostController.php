@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Post;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\View\View;
@@ -33,15 +34,20 @@ class PostController extends Controller
             'text_content' => ['required', 'string', 'max:4095'],
         ]);
 
-
         $id = Auth::id(); //id пользователя отправившего запрос на создание поста
+
+        $tags_array = explode(", ", $request->tags); //разделяем строку
+
+
         $post = Post::create([ //создает в бд новую запись с id = id+1 от послднего и заполняет остальные поля
             'title' => $request->title,
-            'tags' => "$request->tags",
             'text_content' => $request->text_content,
             'user_id' => $id,
         ]);
 
+        foreach ($tags_array as $tag) {
+            $post->tag($tag);
+        };
         //event(new Registered($user)); //Ивент при создании поста (не используется)
         return redirect(route('posts')); //Вызов пути posts (см. web.php)
     }

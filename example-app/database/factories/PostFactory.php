@@ -18,7 +18,6 @@ class PostFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'tags' => 'test, post',
             'user_id' => $this->faker->numberBetween(1, 20),
             'text_content' => $this->faker->paragraph(3)
         ];

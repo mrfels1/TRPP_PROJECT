@@ -3,6 +3,11 @@
 @section('content')
 
 <style>
+    .center_min {
+        margin-left: 20%;
+        width: 100px;
+    }
+
     .center {
         margin-left: 20%;
         margin-right: 20%;
@@ -51,6 +56,18 @@
 
 @unless(count($posts) == 0)
 
+<aside>
+    {{-- Боковая панель (сайдбар) --}}
+    <nav>
+        <h3>Топ популярных тегов:</h3>
+        <ul>
+            @foreach($popular_tags as $tag)
+            <li><a href="/posts/?tag={{$tag->text_content}}">{{$tag->text_content}}</a></li>
+            @endforeach
+        </ul>
+    </nav>
+</aside>
+
 {{-- Вывод всех постов из запроса. Управляется из web.php "route /posts" --}}
 
 @foreach($posts as $post)
@@ -61,6 +78,12 @@
     <h3 class="text_content">
         Автор: {{$post->getUserName()}}
     </h3>
+    <h3 class="center">
+        @foreach($post->getAllTags() as $tag)
+        <span>{{$tag->text_content}}</span>
+        @endforeach
+    </h3>
+
     <p class="text_content">
         {{$post->text_content}}
     </p>

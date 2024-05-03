@@ -37,8 +37,22 @@ class PostsController extends Controller
                 ->orWhere('text_content', 'LIKE', '%' . request()->get('search') . '%');
         }
 
+        if (request()->has('tag')) {
+            $tags = DB::table('tags')->where('text_content', 'LIKE', '%' . request()->get('tag') . '%')->get();
+
+            $posts = $posts->join($tags, 'posts.id', '=', 'tags.post_id')->get(); // FIXME: нихуя не работает блять
+        }
+        $popular_tags = DB::table('tags')
+            ->selectRaw("text_content, COUNT(*) AS tag_count")
+            ->whereRaw("created_at >= NOW() - INTERVAL '24 hours'")
+            ->groupByRaw("text_content")
+            ->orderByRaw("tag_count DESC")
+            ->limit(10)
+            ->get();
+
         return view('posts', [
-            'posts' => $posts->paginate(10) //TODO: Понять как работает pagination
+            'posts' => $posts->paginate(10), //TODO: Понять как работает pagination
+            'popular_tags' => $popular_tags
         ]);
     }
 }

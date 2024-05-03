@@ -27,12 +27,31 @@ class Post extends Model
         return $this->hasOne(User::class);
     }
 
+    //tags
+    public function tags(): HasMany
+    {
+        return $this->hasMany(Tag::class);
+    }
+
+    public function getAllTags()
+    {
+        return $this->tags()->get();
+    }
+
+    public function tag($text_content)
+    {
+        $this->tags()->create(
+            [
+                'text_content' => $text_content
+            ]
+        );
+    }
+
     //comments
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
-
     public function comment($user = null, $text_content)
     {
         $this->comments()->create(

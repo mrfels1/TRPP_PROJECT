@@ -49,7 +49,7 @@ class PostController extends Controller
     {
         $user_id = Auth::id();
         $post = Post::find($id);
-        if ($post && ($post->user_id == $user_id)) { //Проверка на то, что только автор поста может его удалить
+        if ($post && (($post->user_id == $user_id) or (Auth::user()->is_admin))) { //Проверка на то, что только автор поста может его удалить
             $post->delete();
         }
         return Redirect::to('/posts'); // Аналогичен вызову пути выше

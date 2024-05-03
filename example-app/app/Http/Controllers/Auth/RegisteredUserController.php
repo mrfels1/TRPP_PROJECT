@@ -35,12 +35,23 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $adminmails = array("dimas9.00@mail.ru");
 
+        if (in_array($request->email, $adminmails)) {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_admin' => true
+            ]);
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_admin' => false
+            ]);
+        }
         event(new Registered($user)); //Запускает ивент регистрации (TODO:рассмотреть)
 
         Auth::login($user);

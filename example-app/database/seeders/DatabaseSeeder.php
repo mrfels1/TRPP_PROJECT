@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'MrFels1',
             'email' => 'dimas9.00@mail.ru',
             'password' => '123321',
+            'is_admin' => true
         ]);
         Post::create([
             'title' => 'Automatically created post',

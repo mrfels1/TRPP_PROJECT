@@ -66,7 +66,7 @@
             которая расположена в app/Http/Models/Post--}}
     </h3>
     {{-- Удаление поста --}}
-    @if (Auth::check() and (Auth::id() == $post->user_id))
+    @if (Auth::check() and ((Auth::id() == $post->user_id or Auth::user()->is_admin)))
     {{-- Проверка залогинен ли пользователь и является ли он автором --}}
     <h3 class="text_content">
         <form action="{{route('post.delete', $post->id)}}" method="POST"> {{-- При подтверждении вызывается POST post.delete из 
@@ -144,7 +144,8 @@
     <h3 class="text_content">
         Автор: {{$comment->getUserName()}} {{-- см. app/Http/Models/Comment--}}
     </h3>
-    @if (Auth::check() and (Auth::id() == $comment->user_id)) {{-- аналогичная проверка на удаление--}}
+    @if (Auth::check() and ((Auth::id() == $comment->user_id) or Auth::user()->is_admin))
+    {{-- аналогичная проверка на удаление--}}
     <h3 class="text_content">
         <form action="{{route('comment.destroy', $comment->id)}}" method="POST">
             @csrf

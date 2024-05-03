@@ -24,7 +24,7 @@ class PostCommentsController extends Controller
         $user_id = Auth::id();
         $comment = Comment::find($id);
         $post_id = $comment->post_id;
-        if ($comment && ($comment->user_id == $user_id)) {
+        if ($comment && ($comment->user_id == $user_id or Auth::user()->is_admin)) {
             $comment->delete();
         }
         return Redirect::to('/post/' . $post_id);

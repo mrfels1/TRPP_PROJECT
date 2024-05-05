@@ -75,7 +75,8 @@
 import React, { useState } from 'react';
 import './makepostStyle.css'; // Подключаем стили
 import { Link } from 'react-router-dom';
-function MakeNewPost() {
+import axios from 'axios';
+function MakeNewPost({ addPost }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -88,14 +89,16 @@ function MakeNewPost() {
   };
 
   const handleSubmit = () => {
-    // Ваша логика для отправки поста
-    console.log('Title:', title);
-    console.log('Content:', content);
-    // Здесь вы можете добавить отправку данных на сервер или другие необходимые действия
+    const newPost = {
+      title: title,
+      content: content,
+    };
+    addPost(newPost);
+    setTitle('');
+    setContent('');
   };
 
   const handleCancel = () => {
-    // Ваша логика для отмены создания поста
     console.log('Post creation canceled');
   };
 
@@ -108,7 +111,8 @@ function MakeNewPost() {
       </div>
       <div className="input-container">
         <input  type="text"  placeholder="Title"
-          value={title}   onChange={handleTitleChange}  className="title-input"
+          value={title}   onChange={handleTitleChange}  
+          className="title-input"
         />
       </div>
       <div className="input-container">

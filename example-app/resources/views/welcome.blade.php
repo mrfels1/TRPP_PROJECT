@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-    @viteReactRefresh
-    @vite('resources/js/AppWeb.jsx')
+    <!-- @viteReactRefresh
+    @vite('resources/js/AppWeb.jsx') -->
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -16,15 +16,15 @@
     <style>
         html,
         body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 100;
+            background-color: #392C46;
             height: 100vh;
+            font-family: 'Raleway', sans-serif;
             margin: 0;
         }
 
-        .full-height {
+        
+
+        /* .full-height {
             height: 100vh;
         }
 
@@ -50,13 +50,14 @@
 
         .title {
             font-size: 84px;
+            font-weight: 1000;
         }
 
         .links>a {
             color: #636b6f;
             padding: 0 25px;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 800;
             letter-spacing: .1rem;
             text-decoration: none;
             text-transform: uppercase;
@@ -64,7 +65,8 @@
 
         .m-b-md {
             margin-bottom: 30px;
-        }
+        }  */
+        
     </style>
 </head>
 
@@ -75,7 +77,8 @@
         <div class="top-right links">
             <!-- Проверяет залогинен ли пользователь -->
             @if (Auth::check())
-            <a href="{{ url('/createpost') }}">Create Post</a>
+            <a href="{{ route('post.createpost')}}">
+                Create Post</a>
             <!--TODO:-->
             <a href="{{ url('/dashboard') }}">Dashboard</a>
             @else
@@ -87,17 +90,12 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Laravel
+                Mindle default test page
             </div>
 
             <div class="links">
                 <a href="{{ url('/posts') }}">Posts</a>
                 <!--TODO: Сделать красивым-->
-                <a href="https://laravel.com/docs">Documentation</a>
-                <a href="https://laracasts.com">Laracasts</a>
-                <a href="https://laravel-news.com">News</a>
-                <a href="https://forge.laravel.com">Forge</a>
-                <a href="https://github.com/laravel/laravel">GitHub</a>
             </div>
         </div>
     </div>

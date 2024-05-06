@@ -18,6 +18,27 @@
                 </div>
             </div>
 
+            <!-- Поиск -->
+            <div class="inline-flex items-center">
+                <form action="{{route('posts')}}" method="GET">
+                    <div>
+                        <input type="radio" id="dateChoice" name="sortBy" value="date" />
+                        <label style="color:white;" for="dateChoice">Date</label>
+
+                        <input type="radio" id="upChoice" name="sortBy" value="up" />
+                        <label style="color:white;" for="upChoice">▲</label>
+
+                        <input type="radio" id="upChoice" name="sortBy" value="down" />
+                        <label style="color:white;" for="upChoice">▼</label>
+                    </div>
+                    <input name="search" placeholder="..." type="text" style="width: 400px">
+                    <button class="btn" style="color:white;">Поиск</button>
+
+                </form>
+            </div>
+
+
+            @if (Auth::check())
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -54,7 +75,7 @@
                     </x-slot>
                 </x-dropdown>
             </div>
-
+            @endif
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
@@ -78,7 +99,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>
-
+        @if (Auth::check())
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
@@ -102,5 +123,6 @@
                 </form>
             </div>
         </div>
+        @endif
     </div>
 </nav>

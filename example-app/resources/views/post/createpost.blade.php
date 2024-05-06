@@ -4,7 +4,7 @@
 @unless (Auth::check())
 You are not signed in.
 @endunless
-<form method="POST" action="{{ route('createpost') }}">
+<form method="POST" action="{{ route('post.store') }}">
     <!-- csrf защита от подделки -->
     @csrf
 

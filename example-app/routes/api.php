@@ -15,13 +15,14 @@ Route::get('/user', function (Request $request) {
 */
 
 Route::get('/user/{id}', function (string $id) {
-    return new UserResource(User::findOrFail($id));
+    return response()->json(User::findOrFail($id));
 });
 
 Route::get('/posts', function () {
-    return PostResource::collection(Post::all()->keyBy->id);
+    return response()->json(Post::all());
 });
 
-Route::get('/search', function () {
-    return PostResource::collection(Post::all()->keyBy->id);
+Route::get('/search/{text}', function (string $text) {
+    return response()->json(Post::reorder()->orderBy("created_at", "desc")->where('title', 'LIKE', $text)
+        ->orWhere('text_content', 'LIKE', $text)->get());
 });

@@ -15,9 +15,9 @@
     <!-- Привязка css и js с помощью vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
+<div class="lay">
 @include('layouts.navigation')
-
+</div>
 <!-- Page Heading -->
 @if (isset($header))
 <header class="bg-white dark:bg-gray-800 shadow">

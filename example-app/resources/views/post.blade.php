@@ -104,7 +104,7 @@
                     <!-- [▲] {{$post->likes ?:0}}  -->
                     {{-- Выведет число лайков, если null то выведет 0--}}
                     <button className="rating-button basic-btn ratingUp">
-                        <img src="Assets/up-arrow.png" alt="Upvote"/> {{$post->likes ?:0}}
+                        <img src="{{ asset('up-arrow.png') }}" alt="Upvote"/>  {{$post->likes ?:0}}
                     </button>
                 </button>
             </form>

@@ -23,7 +23,7 @@
                     [▲] {{$post->likes ?:0}}
                 </button> -->
                 <button className="rating-button basic-btn ratingUp">
-                    <img src="Assets/up-arrow.png" alt="Upvote"/> {{$post->likes ?:0}}
+                    <img src="{{ asset('up-arrow.png') }}" alt="Upvote"/> {{$post->likes ?:0}}
                 </button>
 
 

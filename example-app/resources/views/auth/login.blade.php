@@ -132,7 +132,7 @@
         <!-- Email Address -->
         <div><div class="input">
             <x-input-label for="email" :value="__('Email')" />
-            <img src="../components/Assets/email.png"/>
+            <img src="example-app\resources\views\components\Assets\email.png"/>
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div></div>

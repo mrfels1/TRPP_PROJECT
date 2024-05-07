@@ -2,12 +2,14 @@
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\PostCommentsController;
-use App\Http\Controllers\Post\PostController;
 
 
 // view('welcome'); аналог inertia::render
@@ -21,6 +23,32 @@ Route::get('/', function () {   // GET запрос по адресу /,
 Route::get('/dashboard', function () {                      // GET запрос по адресу /dashboard,  
     return view('dashboard');                               // сервер отправит пользователю php файл dashboard.blade.php,
 })->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
+
+Route::get('/key', function () {
+    if (Auth::check()) {
+        return auth()
+            ->user()
+            ->createToken('auth_token')
+            ->plainTextToken;
+    }
+})->middleware('auth');
+
+Route::get('/csrf', function () {
+    return csrf_token();
+});
+
+Route::post('/api_login', function (Request $request) {
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+
+        return redirect()->intended('dashboard');
+    }
+});
 
 //Создать и удалить пост
 Route::get('createpost', [PostController::class, 'create']) // GET запрос по адресу /createpost, 

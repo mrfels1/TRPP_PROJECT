@@ -10,7 +10,8 @@
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "tartanlegrand/laravel-openapi": "v1.13.0"
+        "tartanlegrand/laravel-openapi": "v1.13.0",
+        "laravel/ui": "^4.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

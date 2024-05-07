@@ -1,85 +1,12 @@
-// import { useHistory } from 'react-router-dom';
-// import React from 'react';
-
-
-// const createPost = async (postData) => {
-//     try {
-//       const response = await fetch('/api/posts', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({ content: postData })
-//       });
-  
-//       return response;
-//     } catch (error) {
-//       throw new Error('Failed to create post:', error);
-//     }
-//   };
-  
-// function MakeNewPost() {
-//   const [postContent, setPostContent] = useState('');
-//   const history = useHistory();
-
-//   const handlePostContentChange = (event) => {
-//     setPostContent(event.target.value);
-//   };
-
-//   const handlePostButtonClick = async () => {
-//     try {
-      // Проверяем, что содержимое поста не пустое
-    //   if (postContent.trim() === '') {
-    //     alert('Please enter some content for the post.');
-    //     return;
-    //   }
-  
-      // Отправляем запрос на сервер для создания нового поста
-    //   const response = await createPost(postContent);
-  
-      // Проверяем успешность запроса
-    //   if (response.status === 201) {
-    //     alert('Post created successfully!');
-        
-        // Перенаправляем пользователя на главную страницу Forum
-    //     history.push('/');
-    //   } else {
-        // Обрабатываем ошибку, если запрос завершился неудачно
-//         alert('Failed to create post. Please try again later.');
-//       }
-//     } catch (error) {
-//       console.error('Error creating post:', error);
-//       alert('An error occurred while creating the post. Please try again later.');
-//     }
-//   };
-
-//   return (
-//     <div className="make-new-post-container">
-//       <h2>Create New Post</h2>
-//       <textarea
-//          value={postContent}
-//          onChange={handlePostContentChange}
-//         placeholder="Enter your post content..."
-//         className="post-textarea"
-//       />
-//       <button 
-//      onClick={handlePostButtonClick}
-//        className="post-button">
-//         Post
-//       </button>
-//     </div>
-//   );
-// }
-
-// export default MakeNewPost;
 import React, { useState } from 'react';
-import './makepostStyle.css'; // Подключаем стили
-import { Link } from 'react-router-dom';
+import './makepostStyle.css'; 
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+
 function MakeNewPost({ addPost }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-
+  const history = useHistory();
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -88,18 +15,21 @@ function MakeNewPost({ addPost }) {
     setContent(event.target.value);
   };
 
-  const handleSubmit = () => {
-    const newPost = {
-      title: title,
-      content: content,
-    };
-    addPost(newPost);
-    setTitle('');
-    setContent('');
-  };
+  const handleSubmit = async () => {
+       try {
+         const response = await axios.post('/createpost', { title, content });
+         addPost(response.data); 
+         setTitle('');
+         setContent('');
+         history.push('/all-posts');
+       } catch (error) {
+         console.error('Error creating post:', error);
+       }
+     };
 
   const handleCancel = () => {
     console.log('Post creation canceled');
+    history.push('/forum');
   };
 
   return (

@@ -9,40 +9,99 @@ import Search from '../Assets/search.png';
 import arrowUp from '../Assets/up-arrow.png';
 import arroeDown from '../Assets/download.png';
 import reply from '../Assets/reply.png';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 function Forum() {
   
   const [isPressed, setIsPressed] = useState(false);
   const [posts, setPosts] = useState([]);
-
-  // Функция для добавления нового поста
-  const addPost = (newPost) => {
-    setPosts([...posts, newPost]);
+  const history = useHistory(); 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+// обработчик для навигации зарегестрированного и незарегестр пользователя
+  
+  const profileButtonHandler = () => {
+    if (isAuthenticated && hasProfile) {
+      history.push('/profile');
+    } else {
+      history.push('/registr');
+    }
   };
 
+  const replyButtonHandler = () => {
+    if (isAuthenticated) {
+      history.push('/make-new-post');
+    } else {
+      history.push('/registr');
+    }
+  };
+
+  // анимация для кнопки create post
   const handleCreateButtonClick = () => {
     setIsPressed(!isPressed);
   };
+
+  // работа поисковика
+  const handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.get(`/search?query=${searchQuery}`);
+      // обработка результата
+    } catch (error) {
+      console.error('Error searching:', error);
+    }
+  };
+  
+
+  useEffect(() => {
+     async function fetchPosts() {
+       try {
+         const response = await axios.get('/posts');
+         setPosts(response.data);
+       } catch (error) {
+         console.error('Error fetching posts:', error);
+       }
+     }
+  
+    fetchPosts();
+   }, []);
+    
+   const handleDelete = async (postId) => {
+     try {
+       await axios.delete(`/post/${postId}`);
+       setPosts(posts.filter(post => post.id !== postId));
+     } catch (error) {
+       console.error('Error deleting post:', error);
+     }
+   };
+
+   const handlePostClick = (postId) => {
+    history.push('/all-posts');
+  };
+
     return (
         <div className="forum-container">
       <header className="forum-header">
         <img src={Mylogo} alt="Forum Logo" className="forum-logo" />
+        
         <div className="search-container">
           <img src={Search} alt="User" className="user-icon" />
-          <input type="text" placeholder="Search..." className="search-input" />
+          <form onSubmit={handleSearchSubmit}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"/>
+          <button type="submit">Search</button>
+          </form>
         </div>
-        {/* <button className="create-post-btn"  onClick={handleCreateButtonClick}>
-          <img  src={isPressed ? pressedCreate : create} alt="Create" aria-hidden="true" />
-        </button> */}
+
         <Link to="/make-new-post" className="create-post-btn">
           <img src={isPressed ? pressedCreate : create} alt="Create" aria-hidden="true" />
         </Link>
 
-         {/* <button className="profile-btn">
-           <img src={Seconduser} alt="Profile"  />
-         </button> */}
-          <Link to="/profile" className="profile-btn">
+          <Link to="/profile" className="profile-btn" onClick={profileButtonHandler}>
           <img src={Seconduser} alt="Profile" />
         </Link>
       </header>
@@ -62,18 +121,18 @@ function Forum() {
         </div>
 
         <div className="user-posts">
-  {/* Маппинг постов */}
-  {posts.map((post, index) => (
-            <div key={index} className="post">
+          {posts.map((post, index) => (
+            <div key={index} className="post" onClick={() => handlePostClick(post.id)}>
               <div className="post-header">
                 <img src={Blackuser} alt="User Icon" className="user-icon" />
                 <h2>{post.title}</h2>
+                <p>{post.getUserName()}</p>
               </div>
               <p>{post.content}</p>
 
             <div className="post-footer">
             <div className='delete-btn'>
-              <button className='delete-btn basic-btn '> Delete</button>
+              <button onClick={() => handleDelete(post.id)} className='delete-btn basic-btn '> Delete</button>
             </div>
               <div className="rating">
               <button className="rating-button basic-btn ratingUp">
@@ -85,8 +144,9 @@ function Forum() {
               </button>
               </div>
 
-              <button className="reply-button basic-btn">
-                <img src={reply} alt="Reply"/><div className='textReply'>Reply</div>
+              <button className="reply-button basic-btn" onClick={replyButtonHandler}>
+                <img src={reply} alt="Reply"/>
+                <div className='textReply'>Reply</div>
               </button>
             </div>
 

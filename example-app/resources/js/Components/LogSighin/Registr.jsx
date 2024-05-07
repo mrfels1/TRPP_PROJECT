@@ -69,14 +69,13 @@ export const Registr = () => {
    
 
  {error && <div className='error'>{error}</div>}
- {/* <div className="goLogin">Already registered? <span>Click Here!</span></div> */}
  <Link to="/login">Already registered? <span>Click Here!</span></Link>
 
  <div className="submit-container">
  {/* <Link to="/forum" className="submit">Register</Link> */}
  {/* <submit class="submit">Register</submit> */}
  <form onSubmit={handleRegister}>
-      <button type="submit" className="submit">Register</button>
+      <button className="submit">Register</button>
       <Link to="/forum" className="redirect">Go to Forum</Link>
     </form>
  </div>

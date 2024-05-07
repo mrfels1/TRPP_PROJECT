@@ -24,7 +24,7 @@
 
         
 
-        /* .full-height {
+        .full-height {
             height: 100vh;
         }
 
@@ -63,10 +63,8 @@
             text-transform: uppercase;
         }
 
-        .m-b-md {
-            margin-bottom: 30px;
-        }  */
-        
+    
+       
     </style>
 </head>
 
@@ -89,9 +87,7 @@
         @endif
 
         <div class="content">
-            <div class="title m-b-md">
-                Mindle default test page
-            </div>
+           
 
             <div class="links">
                 <a href="{{ url('/posts') }}">Posts</a>

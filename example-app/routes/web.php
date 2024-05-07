@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\Post\PostController;
+use Illuminate\Support\Facades\Auth;
 
 
 // view('welcome'); аналог inertia::render
@@ -21,6 +22,22 @@ Route::get('/', function () {   // GET запрос по адресу /,
 Route::get('/dashboard', function () {                      // GET запрос по адресу /dashboard,  
     return view('dashboard');                               // сервер отправит пользователю php файл dashboard.blade.php,
 })->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
+
+Route::get('/auth-status', function () {
+    $user = Auth::user();
+    if ($user) {
+        return response()->json([
+            'authenticated' => true,
+            'hasProfile' => $user->profile !== null,
+        ]);
+    } else {
+        return response()->json([
+            'authenticated' => false,
+            'hasProfile' => false,
+        ]);
+    }
+});
+
 
 //Создать и удалить пост
 Route::get('createpost', [PostController::class, 'create']) // GET запрос по адресу /createpost, 

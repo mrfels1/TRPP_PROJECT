@@ -12,9 +12,7 @@ use App\Http\Controllers\Post\PostController;
 
 // view('welcome'); аналог inertia::render
 //Главная страница
-Route::get('/', function () {   // GET запрос по адресу /,  
-    return view('welcome');     // сервер отправит пользователю php файл welcome.blade.php,
-})->name('main');;              // альтернативное имя пути - main
+Route::get('/', [PostsController::class, 'index'])->name('main');;              // альтернативное имя пути - main
 
 
 //Перейти в профиль

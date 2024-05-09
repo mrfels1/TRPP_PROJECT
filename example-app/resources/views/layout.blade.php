@@ -2,10 +2,17 @@
 <html lang="en">
 
 <head>
+    <style>
+    /* .forum-container{
+        background-color: #392C46; */
+      /* width: 100%; */
+      /* margin: 0px ;
+      } */
+      </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link href="{{ asset('allStyle.css') }}" rel="stylesheet">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -15,7 +22,7 @@
     <!-- Привязка css и js с помощью vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<div class="lay">
+<div class="forum-container">
 @include('layouts.navigation')
 </div>
 <!-- Page Heading -->

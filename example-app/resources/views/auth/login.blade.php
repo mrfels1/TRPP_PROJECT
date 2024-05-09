@@ -99,18 +99,20 @@
     cursor: pointer;
 }
 
-.goRegistr{
+.goRegistr a{
     padding-left: 60px;
     margin-top: 17px;
     color: #797979;
     font-size: 18px;
+    outline: none;
+  text-decoration: none;
 }
 /* a{
     margin-top: 17px;
     color: #797979;
     font-size: 18px;
 } */
-.goRegistr:hover{
+a:hover{
     cursor: pointer;
     color: #A2DC58;
 }

@@ -38,7 +38,8 @@
                     [▼] {{$post->dislikes ?:0}}
                 </button> -->
                 <button className="rating-button basic-btn ratingDown">
-                    <img src="Assets/download.png" alt="Downvote"/> {{$post->dislikes ?:0}}
+                    <img src="Assets/download.png" alt="Downvote"/> 
+                    {{$post->dislikes ?:0}}
                   </button>
 
 

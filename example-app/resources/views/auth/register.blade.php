@@ -83,6 +83,8 @@ body{
     margin-top: 17px;
     color: #797979;
     font-size: 18px;
+    outline: none;
+  text-decoration: none;
 }
 
 a:hover{
@@ -113,7 +115,7 @@ box-shadow: #797979;
     cursor: pointer;
 }
 </style>
-<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> -->
 
 <x-guest-layout>
 

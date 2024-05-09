@@ -16,9 +16,7 @@ Route::get('/', [PostsController::class, 'index'])->name('main');;              
 
 
 //Перейти в профиль
-Route::get('/dashboard', function () {                      // GET запрос по адресу /dashboard,  
-    return view('dashboard');                               // сервер отправит пользователю php файл dashboard.blade.php,
-})->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
+Route::get('/dashboard', [ProfileController::class, 'edit'])->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
 
 //Создать и удалить пост
 Route::get('createpost', [PostController::class, 'create']) // GET запрос по адресу /createpost, 

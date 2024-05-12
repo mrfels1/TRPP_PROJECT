@@ -38,9 +38,9 @@ class PostsController extends Controller
         }
 
         if (request()->has('tag')) {
-            $tags = DB::table('tags')->where('text_content', 'LIKE', '%' . request()->get('tag') . '%')->get();
+            //$tags = DB::table('tags')->where('text_content', 'LIKE', '%' . request()->get('tag') . '%')->get();
 
-            $posts = $posts->join($tags, 'posts.id', '=', 'tags.post_id')->get(); // FIXME: нихуя не работает блять
+            $posts = $posts->join(DB::table('tags')->where('text_content', 'LIKE', '%' . request()->get('tag') . '%')->get(), 'posts.id', '=', 'tags.post_id')->get(); // FIXME: нихуя не работает блять
         }
         $popular_tags = DB::table('tags')
             ->selectRaw("text_content, COUNT(*) AS tag_count")

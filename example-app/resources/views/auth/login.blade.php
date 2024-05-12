@@ -2,10 +2,10 @@
 <link href="{{ asset('css/LogStyle.css') }}" rel="stylesheet">
 
 <x-guest-layout>
-    
+
     <div class='container'>
-    <!-- Session Status -->
-    <x-auth-session-status class="container mb-4" :status="session('status')" />
+        <!-- Session Status -->
+        <x-auth-session-status class="container mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -57,7 +57,7 @@
                 {{ __('Log in') }}
             </x-primary-button>
             </div>
-        </div>
-    </form>
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </form>
     </div>
 </x-guest-layout>

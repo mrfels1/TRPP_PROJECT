@@ -40,8 +40,8 @@
                         <input type="radio" id="dateChoice" name="sortBy" value="date" />
                         <label style="color:white;" for="dateChoice">Date</label>
 
-                        <input type="radio" id="upChoice" name="sortBy" value="up" />
-                        <label style="color:white;" for="upChoice">▲</label>
+                    <input type="radio" id="upChoice" name="sortBy" value="up" />
+                    <label style="color:white;" for="upChoice">▲</label>
 
                         <input type="radio" id="upChoice" name="sortBy" value="down" />
                         <label style="color:white;" for="upChoice">▼</label>
@@ -158,14 +158,12 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
-                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
+                    <input type="submit" class="logout" value="Log Out">
                 </form>
             </div>
         </div>
+        @else
+        <a class="dropdown-button login-dropdown-button" href="{{ route('login') }}">Login</a>
         @endif
     </div>
 </nav>

@@ -9,7 +9,6 @@ use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 #[OpenApi\PathItem]
 class PostsController extends Controller
 {
-
     /**
      * Проверка на поиск.
      *

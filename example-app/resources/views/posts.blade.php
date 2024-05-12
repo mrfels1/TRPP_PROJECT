@@ -53,7 +53,20 @@
         grid-column-end: 5;
     }
 </style>
-
+@if (Route::has('login'))
+<!-- Если есть метод(?) login в rotes -->
+<div class="">
+    <!-- Проверяет залогинен ли пользователь -->
+    @if (Auth::check())
+    <a href="{{ route('post.createpost')}}">Create Post</a>
+    <!--TODO:-->
+    <a href="{{ url('/dashboard') }}">Dashboard</a>
+    @else
+    <a href="{{ url('/login') }}">Login</a>
+    <a href="{{ url('/register') }}">Register</a>
+    @endif
+</div>
+@endif
 @unless(count($posts) == 0)
 
 <aside class="popular-topics-panel">

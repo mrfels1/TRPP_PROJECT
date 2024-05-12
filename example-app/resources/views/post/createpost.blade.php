@@ -1,9 +1,20 @@
 @extends ('layout')
 
 @section('content')
-@unless (Auth::check())
-You are not signed in.
-@endunless
+@if (Route::has('login'))
+<!-- Если есть метод(?) login в rotes -->
+<div class="top-right links">
+    <!-- Проверяет залогинен ли пользователь -->
+    @if (Auth::check())
+    <a href="{{ route('post.createpost')}}">Create Post</a>
+    <!--TODO:-->
+    <a href="{{ url('/dashboard') }}">Dashboard</a>
+    @else
+    <a href="{{ url('/login') }}">Login</a>
+    <a href="{{ url('/register') }}">Register</a>
+    @endif
+</div>
+@endif
 <form method="POST" action="{{ route('post.store') }}">
     <!-- csrf защита от подделки -->
     @csrf

@@ -13,15 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 // view('welcome'); аналог inertia::render
 //Главная страница
-Route::get('/', function () {   // GET запрос по адресу /,  
-    return view('welcome');     // сервер отправит пользователю php файл welcome.blade.php,
-})->name('main');;              // альтернативное имя пути - main
+Route::get('/', [PostsController::class, 'index'])->name('main');;              // альтернативное имя пути - main
 
 
 //Перейти в профиль
-Route::get('/dashboard', function () {                      // GET запрос по адресу /dashboard,  
-    return view('dashboard');                               // сервер отправит пользователю php файл dashboard.blade.php,
-})->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
+Route::get('/dashboard', [ProfileController::class, 'edit'])->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
 
 Route::get('/auth-status', function () {
     $user = Auth::user();

@@ -1,6 +1,6 @@
 <div class="post">
-    <div className="post-header">
-    <img src="Assets/Blackuser.png" alt="User Icon" className="user-icon" />
+    <div class="post-header">
+    <img src="Assets/Blackuser.png" alt="User Icon" class="user-icon" />
     <h2 class="title">
         <a href="/post/{{$post['id']}}">{{$post['title']}}</a>
     </h2>
@@ -19,10 +19,8 @@
         <div class="upvote_cnt">
             <form method="POST" action="/post/{{$post->id}}/like">
                 @csrf
-                <!-- <button type="submit" style="{{$post->isLikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
-                    [▲] {{$post->likes ?:0}}
-                </button> -->
-                <button className="rating-button basic-btn ratingUp">
+                
+                <button class="rating-button basic-btn ratingUp">
                     <img src="{{ asset('up-arrow.png') }}" alt="Upvote"/> {{$post->likes ?:0}}
                 </button>
 
@@ -34,10 +32,7 @@
             <form method="POST" action="/post/{{$post->id}}/like">
                 @csrf
                 @method('DELETE')
-                <!-- <button type="submit" style="{{$post->isDislikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
-                    [▼] {{$post->dislikes ?:0}}
-                </button> -->
-                <button className="rating-button basic-btn ratingDown">
+                <button class="rating-button basic-btn ratingDown">
                     <img src="Assets/download.png" alt="Downvote"/> 
                     {{$post->dislikes ?:0}}
                   </button>

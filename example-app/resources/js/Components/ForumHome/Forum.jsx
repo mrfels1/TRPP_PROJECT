@@ -112,10 +112,12 @@ function Forum() {
           <h2 style={{ textAlign: "center" }}>Popular Topics</h2>
           <ul>
             {['Topic 1', 'Topic 2', 'Topic 3', 'Topic 4', 'Topic 5'].map((topic, index) => (
-              <div class="topic-item"><li key={index} className="tag-item">
+              <div class="topic-item">
+                <li key={index} className="tag-item">
                 <span className="topic-circle"></span>
                 {topic}
-              </li></div>
+              </li>
+              </div>
             ))}
           </ul>
         </div>

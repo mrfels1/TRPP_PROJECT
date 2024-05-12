@@ -1,15 +1,18 @@
 
   a{cursor: pointer;
 }
-  .forum-header {
+
+.forum-header {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    background-color: #392C46;
+    align-items: flex-start;
   }
-  
+ 
  .forum-logo {
     width: 60px;
     margin-right: auto;
@@ -19,13 +22,15 @@
     width: 60% ;
     margin-right: auto;
     margin-left: auto;
+
   }
   .search-container {
+
     display: flex;
     align-items: center;
     background-color: #fff;
     border-radius: 30px;
-    height: 60px; 
+    height: 50px; 
     width: 100% ;
   }
   
@@ -35,15 +40,18 @@
   }
   
   .search-input {
-    font-size: 20px;
+    font-size: 18px;
     width: 90%;
     border: none;
     outline: none;
     background: transparent;
     padding: 0px 10px;
   }
-  
+  .CREATEpost{
+    margin-top: 0px;
+  }
   .create-post-btn {
+    margin-top: 0px;
     background-color: transparent;
     color: #fff;
     border: none;
@@ -57,13 +65,23 @@
   }
   
   .dropdown-button {
-    background-color: #A2DC58; /* Фон кнопки 162 220 88*/
+    margin-top: 0px;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: #ffffff; /* Фон кнопки 162 220 88*/
     color: black; /* Цвет текста */
+    cursor: pointer;
+    border: none;
+    height: 50px;
+    border-radius: 30px;
 }
 
 .dropdown-button:hover {
+  color: black; 
+}
+.dropdown-button:active {
     /* background-color: #5b6d43;  */
-    background-color: rgb(255, 255, 255); 
+    background-color: #A2DC58;
     color: black; 
 }
   .profile-btn{
@@ -90,86 +108,18 @@
     display: flex;
     padding-top: 20px;
   }
-  
-  .popular-topics-panel {
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-    max-width: 300px;
-    flex: 1;
-    background-color: #fff;
-    border-radius: 5px;
-  }
-  .popular-topics-panel h2{
-    margin:20px;
-    align-content: center;
-  }
+
+
   ul{
     padding: 0px;
   }
-  .topic-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 0px;
-    border-top: 1px solid #000;
-  }
-  .tag-item{
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    margin-left: 10px;
-  }
-  .tag-item::before {
-    content: "";
-    position: absolute;
-    top: -1px; 
-    left: 0;
-    width: 100%; 
-    height: 1px; 
-    background-color: #000; 
-  }
-  .topic-circle {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #A2DC58;
-    margin-right: 10px;
-  }
-  
+
+
   .user-posts {
     flex: 3;
     padding: 20px;
     padding-top: 0px;
   
-  }
-  
-  .user-posts .post {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-  }
-  
-  .post-header{
-    display: flex;
-    flex-direction: row;
-    margin-top: 0px;
-    padding-top: 0px;
-  }
-  .post-header img{
-    width: 50px;
-    height: 50px;
-  }
-  .post-header h2{
-    margin-left: 20px;
-  
-  }
-  
-  .post-footer{
-    display: flex;
-    justify-content: flex-end;
   }
   
   .basic-btn{
@@ -179,8 +129,7 @@
     border-color: #000;
     border-width: 2px;
   }
-  
-  
+
   .basic-btn img{
     width: 20px;
     height: 20px;
@@ -188,36 +137,9 @@
   .basic-btn img:active{
     color: #fff;
   }
-  .rating{
-    border-color: #000;
-    border-width: 2px;
-    width: auto;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-  .rating-value {
-    margin: 0 10px;
-  }
-  .reply-button{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  }
+
   .textReply{
     margin-left: 5px;
     color: #000;
   }
   
-  .ratingUp:active{
-    background-color: #A2DC58;
-  }
-  .ratingDown:active{
-    background-color: #e63f3f;
-  }
-  .delete-btn{
-    margin-right: 5px;
-  }

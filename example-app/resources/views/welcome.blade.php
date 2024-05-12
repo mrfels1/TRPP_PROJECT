@@ -20,9 +20,6 @@
             font-family: 'Raleway', sans-serif;
             margin: 0;
         }
-
-        
-
         .full-height {
             height: 100vh;
         }
@@ -66,7 +63,7 @@
        
     </style>
 </head>
-
+<!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
 <body>
     <div class="flex-center position-ref full-height">
         @if (Route::has('login'))

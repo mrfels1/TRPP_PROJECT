@@ -3,11 +3,7 @@
 
 <head>
     <style>
-    /* .forum-container{
-        background-color: #392C46; */
-      /* width: 100%; */
-      /* margin: 0px ;
-      } */
+
       </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +31,7 @@
 @endif
 
 <body>
-    <h1 class="bg-white dark:bg-gray-800 shadow">Mindle</h1>
+    <!-- <h1 class="bg-white dark:bg-gray-800 shadow">Mindle</h1> -->
     {{-- VIEW OUTPUT 
             TODO: Layout 
             --}}

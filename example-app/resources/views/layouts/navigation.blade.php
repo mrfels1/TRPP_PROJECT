@@ -1,16 +1,16 @@
 <link href="{{ asset('allStyle.css') }}" rel="stylesheet">
 <link href="{{ asset('css/NavStyle.css') }}" rel="stylesheet">
+<script src="{{ asset('js/scriptNav.js') }}"></script>
+<!-- <script>
+    document.getElementById('create-post-link').addEventListener('click', function() {
+        var img = document.querySelector('.create-post-btn');
+        img.src = "{{ asset('PressedCreateButton.svg') }}";
+    });
+</script> -->
 
 <!-- <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700"> -->
-    <nav x-data="{ open: false }">
+    <nav x-data="{ open: false }"> 
     <div class="forum-header">  
-    
-    
-    
-    <!-- Primary Navigation Menu -->
-    <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> -->
-       
-        <!-- <div class="flex justify-between h-16"> -->
         
                 <!-- ЧЕ ЭТО ЗА ПОЕБЕНЬ БЛЯТЬ ВОЛШЕБНАЯ ТАКАЯ-->
                 <div class="shrink-0 flex items-center">
@@ -21,28 +21,21 @@
                 <div class="forum-logo">
                     <img src="{{ asset('LLLogo.png') }}" class="forum-logo" />
                 </div>
-                <!-- Navigation Links -->
-                <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div> -->
-            
+
 
             <!-- Поиск -->
-            <!-- <div class="inline-flex items-center"> -->
                 <div class="big-search-container">
                 <form action="{{route('posts')}}" method="GET" >
+
                     <div class="search-container">
                     <img src="{{ asset('search.png') }}" alt="User" class="user-icon" />
+        
                     <input class="search-input" name="search" placeholder="Search..." type="text">
-                    <!-- <button class="btn" style="color:white;">Поиск</button> -->
-                
-                
-                
+
+
                     </div>
-                    <!-- <button class="btn" style="color:white;">Поиск</button> -->
                     
+
                     <div>
                         <input type="radio" id="dateChoice" name="sortBy" value="date" />
                         <label style="color:white;" for="dateChoice">Date</label>
@@ -56,7 +49,26 @@
                     
                 </form>
             </div>
-
+            @if (Route::has('login'))
+            <!-- Если есть метод(?) login в rotes -->
+            <div class="CREATEpost">
+                <!-- Проверяет залогинен ли пользователь -->
+                @if (Auth::check())
+                
+                <a href="{{ route('post.createpost')}}" id="create-post-link">
+                    <img src="{{ asset('CreateButton.svg') }}" class="create-post-btn"  alt="Create" aria-hidden="true" />
+                </a>
+                
+                
+                <!-- TODO: -->
+                @else
+                <div class="LoginBtn">  
+                <a href="{{ url('/login') }}">Login</a></div>
+                <div class="LoginBtn">  
+                <a href="{{ url('/register') }}">Register</a></div>
+                @endif
+            </div>
+            @endif
 
             @if (Auth::check())
             <!-- Settings Dropdown -->
@@ -66,7 +78,7 @@
                         <button
                             class="dropdown-button inline-flex items-center px-3 py-2 border
                              border-transparent text-sm leading-4 font-medium rounded-md 
-                             text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 
+                             text-gray-500 dark:text-gray-400 
                              hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none 
                              transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
@@ -129,14 +141,10 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
+
         @if (Auth::check())
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+        <div class="pt-4 pb-1 ">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
@@ -159,5 +167,5 @@
             </div>
         </div>
         @endif
-   
+    </div>
 </nav>

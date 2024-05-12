@@ -15,3 +15,8 @@
         </div>
     </div>
 </x-app-layout>
+<style>
+    .bg{
+        background-color: #392C46;
+    }
+</style>

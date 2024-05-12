@@ -38,7 +38,7 @@ function MakeNewPost({ addPost }) {
     <div className="create-header">
       <h1>Create Post</h1>
       <div className='underline'> </div>
-      </div>
+    </div>
       <div className="input-container">
         <input  type="text"  placeholder="Title"
           value={title}   onChange={handleTitleChange}  

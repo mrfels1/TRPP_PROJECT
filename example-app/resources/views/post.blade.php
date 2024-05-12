@@ -104,7 +104,7 @@
                     <!-- [▲] {{$post->likes ?:0}}  -->
                     {{-- Выведет число лайков, если null то выведет 0--}}
                     <button class="rating-button basic-btn ratingUp">
-                        <img src="{{ asset('up-arrow.png') }}" alt="Upvote"/>  {{$post->likes ?:0}}
+                        <img src="{{ asset('up-arrow.png') }}" alt="Upvote" /> {{$post->likes ?:0}}
                     </button>
                 </button>
             </form>
@@ -115,7 +115,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" style="{{$post->isDislikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
-                    [▼] 
+                    [▼]
                     <!-- {{$post->dislikes ?:0}} -->
                 </button>
             </form>

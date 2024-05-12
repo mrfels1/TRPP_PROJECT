@@ -56,7 +56,7 @@
 
 @unless(count($posts) == 0)
 
-<aside>
+<aside class="popular-topics-panel">
     {{-- Боковая панель (сайдбар) --}}
     <nav>
         <h3>Топ популярных тегов:</h3>

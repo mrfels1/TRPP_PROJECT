@@ -1,14 +1,7 @@
-
-body{
-    background-color: #392C46;
-    margin: 0;
+body {
+  background-color: #392C46;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-}
-
-.forum-container{
-  background-color: #5d4674;
-/* width: 98%; */
-margin: 0px 20px ;
 }

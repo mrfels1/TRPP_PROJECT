@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 // view('welcome'); аналог inertia::render
 //Главная страница
-Route::get('/', [PostsController::class, 'index'])->name('main');;              // альтернативное имя пути - main
+Route::get('/', [PostsController::class, 'index'])->name('main')->middleware(['auth', 'verified']);              // альтернативное имя пути - main
 
 
 //Перейти в профиль
@@ -43,7 +43,7 @@ Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.dele
 
 
 //Перейти на страницу постов
-Route::get('/posts', [PostsController::class, 'index'])->name('posts'); // GET запрос по адресу /posts
+Route::get('/posts', [PostsController::class, 'index'])->name('posts')->middleware(['auth', 'verified']); // GET запрос по адресу /posts
 
 
 //Перейти на страницу поста

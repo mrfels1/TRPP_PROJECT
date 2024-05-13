@@ -49,7 +49,7 @@
             <!-- <div class="flex items-center justify-end mt-4"> -->
             <div class="goRegistr">
                 @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}">
+                <a href="{{ route('register') }}">
                     {{ __('Dont you have a profile?') }}
                 </a>
                 @endif

@@ -9,11 +9,11 @@ https://miro.com/app/board/uXjVKfZV_j0=/
 3. Установите postgresql : https://www.postgresql.org/download/
 4. Создайте сервер postgresql с помощью pgadmin4
 5. Отредактируйте .env-example заполнив его информацией о сервере БД после чего переименуйте в .env
-6. Установите зависимости: 'composer install'
-7. Проведите миграцию: 'php artisan migrate --seed'
-8. Запустите проект: 'php artisan serve'
+6. Установите зависимости: `composer install`
+7. Проведите миграцию: `php artisan migrate --seed`
+8. Запустите проект: `php artisan serve`
 
-Генерация документации: 'php artisan openapi:generate'
+Генерация документации: `php artisan openapi:generate`
 
 Зависимости:
 - Composer

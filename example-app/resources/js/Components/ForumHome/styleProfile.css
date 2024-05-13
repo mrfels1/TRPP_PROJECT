@@ -1,0 +1,62 @@
+.user-profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .user-profile-container h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .create-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+   }
+   .underline{
+    width: 100px;
+    height: 7px;
+    background: #A2DC58;
+    border-radius: 9px;
+    }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .username-input,
+  .email-input,
+  .password-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .update-button, .goForum {
+    border-color: #000;
+    border-width: 2px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #ffffff; 
+    color: #000000;
+  }
+  .update-button{
+    margin-right: 15px;
+  }
+  .update-button:active, .goForum:active {
+    background-color: #A2DC58; 
+  }

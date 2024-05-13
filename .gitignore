@@ -1,1 +1,2 @@
-/postgresql/data/base
+postgresql/data
+!.gitignore

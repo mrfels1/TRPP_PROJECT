@@ -15,6 +15,7 @@ https://miro.com/app/board/uXjVKfZV_j0=/
 
 Зависимости:
 - Composer
+- PostgreSQL
 - "php": "^8.2",
 - "inertiajs/inertia-laravel": "^1.0",
 - "laravel/framework": "^11.0",

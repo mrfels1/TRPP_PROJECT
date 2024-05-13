@@ -15,6 +15,7 @@ https://miro.com/app/board/uXjVKfZV_j0=/
 
 Генерация документации: `php artisan openapi:generate`
 
+
 Зависимости:
 - Composer
 - PostgreSQL

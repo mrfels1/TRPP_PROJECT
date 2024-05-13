@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
 
 //Лайкнуть пост
 Route::post('/post/{id}/like', [PostLikesController::class, 'store'])->name('post.like');
-Route::delete('/post/{id}/like', [PostLikesController::class, 'destroy'])->name('post.destroy');
+Route::delete('/post/{id}/dislike', [PostLikesController::class, 'destroy'])->name('post.destroy');
 
 //Сделать комментарий
 Route::post('/post/{id}/comment', [PostCommentsController::class, 'store'])->name('comment.make'); // ШАГ 4 -> app/Http/Controllers/PostComments/Controller

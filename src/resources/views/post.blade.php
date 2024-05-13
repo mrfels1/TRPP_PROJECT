@@ -2,7 +2,8 @@
 
 @section('content')
 <link href="{{ asset('allStyle.css') }}" rel="stylesheet">
-@vite(['resources/css/SinglePostStyle.css'])
+@vite(['resources/css/PostStyle.css'])
+
 <style>
     .post {
         background-color: #fff;

@@ -1,5 +1,6 @@
 <!-- <link href="{{ asset('allStyle.css') }}" rel="stylesheet"> -->
 @vite(['resources/css/NavStyle.css'])
+@vite(['resources/js/scriptNav.js'])
 <script src=></script>
 <!-- <script>
     document.getElementById('create-post-link').addEventListener('click', function() {
@@ -142,7 +143,7 @@
                 <div class="font-medium text-sm" style="color: #fff;">{{ Auth::user()->email }}</div>
             </div>
 
-            <div class="mt-3 space-y-1" style="color: #fff;">
+            <div class="mt-3 space-y-1" style="color: #fff; background-color: rgb(95 72 115);">
                 <x-responsive-nav-link class="profile-btn" :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

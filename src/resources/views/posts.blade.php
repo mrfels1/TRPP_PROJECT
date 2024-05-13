@@ -47,9 +47,12 @@
                     </h2>
 
                     <h3 class="center">
+                        @unless(count($post->getAllTags()) == 0)
+                        Tags:
                         @foreach($post->getAllTags() as $tag)
-                        <span>tag: {{$tag->text_content}}</span>
+                        <span> {{$tag->text_content}}</span>
                         @endforeach
+                        @endunless
                     </h3>
                 </div>
             </div>
@@ -73,9 +76,9 @@
                         </button>
                     </form>
 
-                    <span> {{$post->likes ?:0}}</span>
+                    <span> {{($post->likes ?:0) - ($post->dislikes ?:0)}}</span>
 
-                    <form method="POST" action="/post/{{$post->id}}/like">
+                    <form method="POST" action="/post/{{$post->id}}/dislike">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="rating-button basic-btn ratingDown"

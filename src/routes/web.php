@@ -36,8 +36,8 @@ Route::get('/auth-status', function () {
 
 
 //Создать и удалить пост
-Route::get('createpost', [PostController::class, 'create']) // GET запрос по адресу /createpost, 
-    ->name('post.createpost');                              // выполнит функцию create класса PostController  
+Route::get('createpost', [PostController::class, 'create']) // GET запрос по адресу /createpost,
+    ->name('post.createpost');                              // выполнит функцию create класса PostController
 Route::post('createpost', [PostController::class, 'store'])->name('post.store'); // POST запрос, выполнит store класса PostController
 Route::delete('/post/{id}', [PostController::class, 'destroy'])->name('post.delete'); // DELETE запрос, выполнит delete класса PostController
 
@@ -49,8 +49,8 @@ Route::get('/posts', [PostsController::class, 'index'])->name('posts'); // GET �
 //Перейти на страницу поста
 // ШАГ 1 -> post.blade.php строка 57
 Route::get('/post/{id}', function (string $id) {    // GET запрос по адресу /post/{id} (id указывается в ссылке прим. 127.0.0.1:8000/post/2)
-    $post = Post::findOrFail($id);                  // Находим в бд строку Post'а по id из запроса 
-    return view('post', compact('post'));   // Передача пользователю странцы post с переданным в неё post 
+    $post = Post::findOrFail($id);                  // Находим в бд строку Post'а по id из запроса
+    return view('post', compact('post'));   // Передача пользователю странцы post с переданным в неё post
 });
 
 

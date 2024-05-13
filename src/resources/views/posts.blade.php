@@ -1,5 +1,5 @@
 <link href="{{ asset('allStyle.css') }}" rel="stylesheet">
-<link href="{{ asset('css/PostStyle.css') }}" rel="stylesheet">
+@vite(['resources/css/PostStyle.css'])
 @extends ('layout')
 
 @section('content')

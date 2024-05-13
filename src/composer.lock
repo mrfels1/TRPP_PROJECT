@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b75e217406dcc5411e41dedd72e5b6d8",
+    "content-hash": "94653b4a0ee45ba15116e99af10627af",
     "packages": [
         {
             "name": "brick/math",
@@ -6351,6 +6351,10 @@
                 "rest",
                 "swagger"
             ],
+            "support": {
+                "issues": "https://github.com/TartanLeGrand/laravel-openapi/issues",
+                "source": "https://github.com/TartanLeGrand/laravel-openapi/tree/v1.13.0"
+            },
             "time": "2024-04-12T07:33:14+00:00"
         },
         {

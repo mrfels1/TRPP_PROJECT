@@ -105,7 +105,7 @@
 @endforeach
 
 @else
-<div class="noPost">  <p>No posts</p></div>
+<div class="noPost">  <p>No posts</p></div> 
 @endunless
 @endsection
 </div>

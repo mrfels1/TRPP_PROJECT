@@ -150,8 +150,6 @@
       color: #fff;
     }
     .rating{
-      /* border-bottom: #000 ;
-      border-top: #000; */
       border-width: 2px;
       border-radius: 20px;
       border-color: #000;
@@ -184,9 +182,7 @@
     .ratingDown:active{
       background-color: #e63f3f;
     }
-    .delete-btn{
-      margin-right: 5px;
-    }
+   
 
     .noPost{
       color: #fff;
@@ -214,3 +210,18 @@
     text-align: justify;
     overflow-wrap: break-word; 
   }
+
+  .delete-btn{
+    margin-right: 5px;
+    font-size: 18px;
+  }
+  .delete-btn:hover{
+   background-color: #e63f3f;
+   color: #fff;
+   border-color: #e63f3f;
+  }
+  .del-text{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+

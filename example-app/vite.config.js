@@ -6,7 +6,12 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
-                'resources/js/app.js',
+                'resources/js/CreatePostStyle.js',
+                'resources/js/RegistrStyle.js',
+                'resources/js/LogStyle.js',
+                'resources/js/PostStyle.js',
+                'resources/js/AllStyle.js',
+                'resources/js/NavStyle.js'
             ],
             refresh: true,
         }),

@@ -1,6 +1,8 @@
-<section class="space-y-6">
+<link href="{{ asset('allStyle.css') }}" rel="stylesheet">
+<link href="{{ asset('css/ProfileStyle.css') }}" rel="stylesheet">
+<section class="sec-profile space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-lg font-medium "  style="color: #fff;">
             {{ __('Delete Account') }}
         </h2>
 
@@ -9,10 +11,10 @@
         </p>
     </header>
 
-    <x-danger-button
+    <button class=" danger-button pro-button submit"
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+    >{{ __('Delete Account') }}</button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
@@ -46,9 +48,9 @@
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ms-3">
+                <button class="pro-button ms-3">
                     {{ __('Delete Account') }}
-                </x-danger-button>
+                </button>
             </div>
         </form>
     </x-modal>

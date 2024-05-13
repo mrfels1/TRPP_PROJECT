@@ -1,6 +1,6 @@
-<link href="{{ asset('allStyle.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('allStyle.css') }}" rel="stylesheet"> -->
 <link href="{{ asset('css/NavStyle.css') }}" rel="stylesheet">
-<script src="{{ asset('js/scriptNav.js') }}"></script>
+<script src=></script>
 <!-- <script>
     document.getElementById('create-post-link').addEventListener('click', function() {
         var img = document.querySelector('.create-post-btn');
@@ -113,9 +113,9 @@
             </div>
             @endif
             <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
+            <div class=" Responsive -me-2 flex items-center sm:hidden">
                 <button @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 
+                    class=" Responsive inline-flex items-center justify-center p-2 rounded-md text-gray-400 
                     hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none 
                     focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition 
                     duration-150 ease-in-out">
@@ -131,12 +131,6 @@
         <!-- </div> -->
     
     
-    
-       
-    
-    
-    
-    
     </div>
 
     <!-- Responsive Navigation Menu -->
@@ -144,14 +138,14 @@
 
         @if (Auth::check())
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 ">
+        <div class="Responsive">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-base" style="color: #fff;">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-sm" style="color: #fff;">{{ Auth::user()->email }}</div>
             </div>
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+            <div class="mt-3 space-y-1" style="color: #fff;" >
+                <x-responsive-nav-link class="profile-btn" :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
@@ -159,7 +153,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
+                    <x-responsive-nav-link class="profile-btn" :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>

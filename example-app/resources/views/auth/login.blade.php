@@ -1,7 +1,7 @@
 <link href="{{ asset('allStyle.css') }}" rel="stylesheet">
 <link href="{{ asset('css/LogStyle.css') }}" rel="stylesheet">
 
-<x-guest-layout>
+<layout>
     
     <div class='container'>
     <!-- Session Status -->
@@ -44,10 +44,10 @@
             </label>
 
 
-        <div class="flex items-center justify-end mt-4">
+        <!-- <div class="flex items-center justify-end mt-4"> -->
             <div class="goRegistr">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                <a  href="{{ route('password.request') }}">
                     {{ __('Dont you have a profile?') }}
                 </a>
             @endif
@@ -57,7 +57,30 @@
                 {{ __('Log in') }}
             </x-primary-button>
             </div>
-        </div>
+        <!-- </div> -->
     </form>
     </div>
-</x-guest-layout>
+</layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

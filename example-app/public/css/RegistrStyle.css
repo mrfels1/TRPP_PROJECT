@@ -109,3 +109,23 @@ box-shadow: #797979;
     font-weight: 700;
     cursor: pointer;
 }
+.submit:hover, .submit:focus {
+    background-color: #58b824;
+    color: rgb(0, 0, 0);
+}
+input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #000000;
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: 0 0 0 2px rgba(162, 220, 88);
+        width: 95%;
+    }
+
+    .dark .email_input:focus {
+        border-color: rgb(115, 159, 58);
+        box-shadow: 0 0 0 2px rgba(162, 220, 88, 0.5);
+      
+    }

@@ -13,6 +13,8 @@ https://miro.com/app/board/uXjVKfZV_j0=/
 7. Проведите миграцию: php artisan migrate --seed
 8. Запустите проект: php artisan serve
 
+Генерация документации: php artisan openapi:generate
+
 Зависимости:
 - Composer
 - PostgreSQL

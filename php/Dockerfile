@@ -17,7 +17,7 @@ RUN apt-get -y install apt-utils nano wget dialog vim
 RUN echo "\e[1;33mInstall important libraries\e[0m"
 RUN apt-get -y install --fix-missing \
     apt-utils \
-    build-essential \
+    build-essential
     git \
     curl \
     libcurl4 \

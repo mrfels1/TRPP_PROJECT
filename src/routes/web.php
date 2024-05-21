@@ -2,14 +2,40 @@
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\PostCommentsController;
-use App\Http\Controllers\Post\PostController;
-use Illuminate\Support\Facades\Auth;
 
+Route::get('/key', function () {
+    if (Auth::check()) {
+        return auth()
+            ->user()
+            ->createToken('auth_token')
+            ->plainTextToken;
+    }
+})->middleware('auth');
+
+Route::get('/csrf', function () {
+    return csrf_token();
+});
+
+Route::post('/api_login', function (Request $request) {
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+
+        return redirect()->intended('dashboard');
+    }
+});
 
 // view('welcome'); аналог inertia::render
 //Главная страница

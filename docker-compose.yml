@@ -14,6 +14,7 @@ services:
     depends_on:
       - app
       - db
+    platform: "linux/amd64"
 
   
   db:
@@ -27,6 +28,7 @@ services:
       POSTGRES_DB: maindb
       POSTGRES_USER: defuser
       POSTGRES_PASSWORD: 123Enot321
+    platform: "linux/amd64"
 
   # Application Service
   app:
@@ -39,6 +41,7 @@ services:
     ports:
       - "9000:9000"
     working_dir: /var/www
+    platform: "linux/amd64"
 
   
   pgadmin:
@@ -51,3 +54,4 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: mrfelsgc@gmail.com
       PGADMIN_DEFAULT_PASSWORD: password
+    platform: "linux/amd64"

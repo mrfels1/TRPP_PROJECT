@@ -2,14 +2,9 @@
 @vite(['resources/css/NavStyle.css'])
 @vite(['resources/js/scriptNav.js'])
 <script src=></script>
-<!-- <script>
-    document.getElementById('create-post-link').addEventListener('click', function() {
-        var img = document.querySelector('.create-post-btn');
-        img.src = "{{ asset('PressedCreateButton.svg') }}";
-    });
-</script> -->
 
-<!-- <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700"> -->
+
+
 <nav x-data="{ open: false }">
     <div class="forum-header">
 
@@ -127,7 +122,7 @@
                 </svg>
             </button>
         </div>
-        <!-- </div> -->
+
 
 
     </div>

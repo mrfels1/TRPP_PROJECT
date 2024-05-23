@@ -25,7 +25,7 @@
 }
 
 .popular-topics-panel h2 {
-    margin: 20px;
+    padding: 20px;
     align-content: center;
     text-align: center;
     font-size: 20px;
@@ -95,7 +95,7 @@ ul {
 
 .post-header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 0px;
     padding-top: 0px;
 }
@@ -105,10 +105,10 @@ ul {
     height: 50px;
 }
 
-.post-header h2 {
+/* .post-header h2 {
     margin-left: 20px;
 
-}
+} */
 
 
 .post-footer {
@@ -199,30 +199,40 @@ ul {
     background-color: #8282825f;
 }
 
-
-.noPost {
+/* .noPost {
     color: #fff;
     font-size: 40px;
+} */
+.title h2{
+    margin: 0;
 }
-
 .title {
-    margin-left: 20%;
+    display: flex;
+    margin: 0; 
     font-size: 34px;
-    font-weight: 1000;
+    font-weight: 800;
     word-break: break-all;
+    align-items: end;
 }
-
+.center{
+    padding: 0 25px ;
+}
 .text_content {
+    margin-top: 10px;
+    align-items: end;
+    display: flex;
     text-align: justify;
     padding: 0 25px;
     font-size: 18px;
     font-weight: 600;
     word-break: break-all;
 }
-
+.avtor_title{
+    display: flex;
+    flex-direction: row;
+}
 .post .text_content {
     max-width: 100%;
-
 }
 
 .post .title {
@@ -232,6 +242,9 @@ ul {
 }
 
 .delete-btn {
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: #000;
     margin-right: 5px;
     font-size: 18px;
 }
@@ -245,4 +258,86 @@ ul {
 .del-text {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.new_post{
+    display: flex;
+    flex-direction: column;
+margin-bottom: 20px;
+
+    /* width: 80%;
+    max-width: 800px; */
+}
+
+.new_post input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow: hidden; 
+    word-wrap: break-word; 
+}
+
+.new_post button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.new_post button:active {
+    border-color: #A2DC58;
+    background-color: #A2DC58;
+}
+.new-btn{
+    border-width: 2px;
+    border-radius: 30px;
+    border-color: #000;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.post-comment {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    width: 97%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.new_post textarea {
+    width: 100%;
+    min-height: 50px;
+    resize: none; /* Отключаем возможность ручного изменения размера */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow: hidden; /* Чтобы скрыть полосу прокрутки */
+    transition: height 0.2s ease; /* Плавное изменение высоты */
 }

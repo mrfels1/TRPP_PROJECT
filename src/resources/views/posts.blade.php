@@ -38,14 +38,14 @@
 
         <div class="post">
             <div class="post-header">
+                <div class="avtor_title">
                 <h3 class="text_content">
-                    Автор: {{$post->getUserName()}}
+                     {{$post->getUserName()}}:
                 </h3>
-                <div class="tag_title">
-                    <h2 class="title">
+                 <h2 class="title">
                         <a href="/post/{{$post->id}}">{{$post->title}}</a>
                     </h2>
-
+                </div>
                     <h3 class="center">
                         @unless(count($post->getAllTags()) == 0)
                         Tags:
@@ -54,7 +54,7 @@
                         @endforeach
                         @endunless
                     </h3>
-                </div>
+                    
             </div>
 
 

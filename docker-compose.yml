@@ -26,7 +26,7 @@ services:
     environment:
       POSTGRES_DB: maindb
       POSTGRES_USER: defuser
-      POSTGRES_PASSWORD: 123Enot321
+      POSTGRES_PASSWORD: DimasRealnoYmniy
 
   # Application Service
   app:
@@ -51,3 +51,4 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: mrfelsgc@gmail.com
       PGADMIN_DEFAULT_PASSWORD: password
+    platform: "linux/amd64"

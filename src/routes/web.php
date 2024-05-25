@@ -45,20 +45,7 @@ Route::get('/', [PostsController::class, 'index'])->name('main')->middleware(['a
 //Перейти в профиль
 Route::get('/dashboard', [ProfileController::class, 'edit'])->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
 
-Route::get('/auth-status', function () {
-    $user = Auth::user();
-    if ($user) {
-        return response()->json([
-            'authenticated' => true,
-            'hasProfile' => $user->profile !== null,
-        ]);
-    } else {
-        return response()->json([
-            'authenticated' => false,
-            'hasProfile' => false,
-        ]);
-    }
-});
+
 
 
 //Создать и удалить пост

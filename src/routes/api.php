@@ -3,23 +3,16 @@
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Http\JsonResponse;
-use App\Http\Resources\PostResource;
-use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Controllers\ControllerExample;
+use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\AuthController;
 
 
 
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
-
-Route::post('/login', 'AuthController@login');
+});
 
 Route::get('/user/{id}', function (string $id) {
     return response()->json(User::findOrFail($id));
@@ -34,34 +27,55 @@ Route::get('/search/{text}', function (string $text) {
         ->orWhere('text_content', 'LIKE', $text)->get());
 });
 
-Route::get('/key', function () {
-    if (Auth::check()) {
-        return auth()
-            ->user()
-            ->createToken('auth_token')
-            ->plainTextToken;
-    }
-    return redirect("/");
-})->middleware('auth');
+Route::post('token', function (Request $request): string {
+    $device = $request->header('device');
+    $email = $request->header('email');
+    $password = $request->header('password');
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    // список всех сообщений
-    Route::get('posts', [ControllerExample::class, 'post']);
-    // получить сообщение
-    Route::get('posts/{id}', [ControllerExample::class, 'singlePost']);
-    // добавить сообщение
-    Route::post('posts', [ControllerExample::class, 'createPost']);
-    // обновить сообщение
-    Route::put('posts/{id}', [ControllerExample::class, 'updatePost']);
-    // удалить сообщение
-    Route::delete('posts/{id}', [ControllerExample::class, 'deletePost']);
-    // добавить нового пользователя с ролью Writer
-    Route::post('users/writer', [ControllerExample::class, 'createWriter']);
-    // добавить нового пользователя с Subscriber
-    Route::post(
-        'users/subscriber',
-        [ControllerExample::class, 'createSubscriber']
-    );
-    // удалить пользователя
-    Route::delete('users/{id}', [ControllerExample::class, 'deleteUser']);
+    $user = User::where('email', $email)->first();
+
+    if (!$user || !Hash::check($password, $user->password)) {
+        return response()->json([
+            'Error' => 'No such credentials'
+        ]);
+    }
+    $token = $user->createToken($device)->plainTextToken;
+    return $token;
+});
+
+Route::post('register', function (Request $request): string {
+    $name = $request->header('name');
+    $email = $request->header('email');
+    $password = $request->header('password');
+
+    $user = User::where('email', $email)->orWhere('name', $name)->first();
+
+    if ($user) {
+        return response()->json([
+            'Error' => 'User already exists'
+        ]);
+    }
+
+    $adminmails = array("dimas9.00@mail.ru");
+
+    if (in_array($email, $adminmails)) {
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+            'is_admin' => true
+        ]);
+    } else {
+        $user = User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password),
+            'is_admin' => false
+        ]);
+    }
+
+    event(new Registered($user));
+    return response()->json([
+        'Success' => 'User created'
+    ]);
 });

@@ -101,7 +101,7 @@
             <div class="rating">
                 <form method="POST" action="/post/{{$post->id}}/like">
                     @csrf
-                    <button type="submit" style="{{$post->isLikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
+                    <button type="submit" >
     
                         <button class="rating-button basic-btn ratingUp">
                             <img src="{{ asset('up-arrow.png') }}" alt="Upvote" />
@@ -115,8 +115,7 @@
                 <form method="POST" action="/post/{{$post->id}}/like">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="rating-button basic-btn ratingDown"
-                        style="{{$post->isDislikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
+                    <button type="submit" class="rating-button basic-btn ratingDown">
                         <img src="{{ asset('download.png') }}" alt="Upvote" />
                     </button> 
                 </form>

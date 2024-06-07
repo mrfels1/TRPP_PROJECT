@@ -2,145 +2,113 @@
 
 @section('content')
 <link href="{{ asset('allStyle.css') }}" rel="stylesheet">
-<link href="{{ asset('css/PostStyle.css') }}" rel="stylesheet">
+@vite(['resources/css/PostStyle.css'])
+
 <style>
-    /* body {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .center {
-        margin-left: 20%;
-        margin-right: 20%;
-    }
-
     .post {
-        padding: 1%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        width: 97%;
+        margin-left: 20px;
     }
-
-    .title {
-        margin-left: 20%;
-        font-size: 34px;
-        font-weight: 1000;
-    }
-
-    .text_content {
-        margin-left: 20%;
-        margin-right: 20%;
-        padding: 0 25px;
-        font-size: 18px;
-        font-weight: 600;
-    }
-
-    .table {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        width: 50%;
-    }
-
-    .upvote_cnt {
-        grid-column-start: 1;
-        grid-column-end: 2;
-    }
-
-    .downvote_cnt {
-        grid-column-start: 2;
-        grid-column-end: 3;
-    }
-
-    .comment_cnt {
-        grid-column-start: 4;
-        grid-column-end: 5;
-    } */
 </style>
-{{-- 
-    Вывод одного поста по id 
+{{--
+    Вывод одного поста по id
     Шаг 2 -> post.blade.php строка 126
---}}  
+--}}
 
-<div class="post">
+<div class="post single">
     <div class="post-header">
-    <h3 class="text_content">
-        Автор: {{$post->getUserName()}} {{-- Вывод имени автора поста выполняется функцией getUserName, которая расположена в app/Http/Models/Post--}}
-    </h3>
-    <div class="tag_title">
-        <h2 class="title">
-        <a href="/post/{{$post['id']}}">{{$post['title']}}</a>
-    </h2>
-    
-    <h3 class="center">
-        @foreach($post->getAllTags() as $tag)
-        <span>tag:{{$tag->text_content}}</span>
-        @endforeach
-    </h3>
-    </div>
+        <h3 class="text_content">
+            Автор: {{$post->getUserName()}}
+            {{-- Вывод имени автора поста выполняется функцией getUserName, которая расположена в app/Http/Models/Post--}}
+        </h3>
+        <div class="tag_title">
+            <h2 class="title">
+                <a href="/post/{{$post['id']}}">{{$post['title']}}</a>
+            </h2>
+
+            <h3 class="center">
+                @foreach($post->getAllTags() as $tag)
+                <span>tag:{{$tag->text_content}}</span>
+                @endforeach
+            </h3>
+        </div>
     </div>
 
-    {{-- Удаление поста --}}
-    @if (Auth::check() and ((Auth::id() == $post->user_id or Auth::user()->is_admin)))
-    {{-- Проверка залогинен ли пользователь и является ли он автором --}}
-    <h3 class="text_content">
-        <form action="{{route('post.delete', $post->id)}}" method="POST"> {{-- При подтверждении вызывается POST post.delete из web.php и в запросе передаётся id поста --}}
-            @csrf
-            @method('DELETE') {{-- POST становится DELETE, если есть возможность сразу сделай DELETE--}}
-            <button type="submit"  class='delete-btn basic-btn ' style="color: red;">
-                X
-            </button>
-        </form>
-    </h3>
-    @endif
+
 
     <p class="text_content">
         {{$post['text_content']}} {{-- Вывод аналогичный post->text_content --}}
     </p>
+
+
+
     {{-- Если пользователь залогинен то может лайк/дизлайк поставить--}}
     @if (Auth::check())
-    {{-- <div class="center table"> --}}
+
+    <div class="post-footer">
+        {{-- Удаление поста --}}
+        @if (Auth::check() and ((Auth::id() == $post->user_id or Auth::user()->is_admin)))
+        {{-- Проверка залогинен ли пользователь и является ли он автором --}}
+        <h3 class="text_content">
+            <form action="{{route('post.delete', $post->id)}}" method="POST">
+                {{-- При подтверждении вызывается POST post.delete из web.php и в запросе передаётся id поста --}}
+                @csrf
+                @method('DELETE') {{-- POST становится DELETE, если есть возможность сразу сделай DELETE--}}
+                <button type="submit" class='delete-btn basic-btn '>
+                    <div class="del-text">Delete</div>
+                </button>
+            </form>
+        </h3>
+        @endif
         <div class="rating">
-        {{-- <div class="upvote_cnt"> --}}
+            {{-- <div class="upvote_cnt"> --}}
             <form method="POST" action="/post/{{$post->id}}/like">
                 {{-- При подтверждении вызывается POST /post/{{$post->id}}/like из web.php--}}
                 @csrf
                 {{-- Если пост лайкнут текущим пользователем, кнопка зелёная, иначе чёрная--}}
                 <button type="submit" style="{{$post->isLikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
-                    {{-- isLikedBy($user) находится в app/Http/Models/Post--}}
-                    <!-- [▲] {{$post->likes ?:0}}  -->
-                    {{-- Выведет число лайков, если null то выведет 0--}}
+
                     <button class="rating-button basic-btn ratingUp">
-                        <img src="{{ asset('up-arrow.png') }}" alt="Upvote"/>  
+                        <img src="{{ asset('up-arrow.png') }}" alt="Upvote" />
                     </button>
                 </button>
             </form>
-        {{-- </div> --}}
-        <span> {{$post->likes ?:0}}</span>
 
-        {{-- <div class="downvote_cnt"> --}}
+            <span> {{$post->likes ?:0}}</span>
+
+
             <form method="POST" action="/post/{{$post->id}}/like">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="rating-button basic-btn ratingDown" style="{{$post->isDislikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
-                    <img src="{{ asset('download.png') }}" alt="Upvote"/> 
-                </button>   <!-- {{$post->dislikes ?:0}} -->
+                <button type="submit" class="rating-button basic-btn ratingDown"
+                    style="{{$post->isDislikedBy(auth()->user())?'color: green;' : 'color: black;'}}">
+                    <img src="{{ asset('download.png') }}" alt="Upvote" />
+                </button> <!-- {{$post->dislikes ?:0}} -->
             </form>
-        {{-- </div> --}}
-    </div>
+
+        </div>
     </div>
     @else {{-- Если пользователь не залогинен--}}
     <div class="center table">
 
         <div class="upvote_cnt" style="color: black; ">
             <button class="rating-button basic-btn ratingUp">
-                <img src="{{ asset('up-arrow.png') }}" alt="Upvote"/>  
-            </button></div>
+                <img src="{{ asset('up-arrow.png') }}" alt="Upvote" />
+            </button>
+        </div>
         <div class="downvote_cnt" style="color: black;">
             <button type="submit" class="rating-button basic-btn ratingDown">
-                <img src="{{ asset('download.png') }}" alt="Upvote"/> 
+                <img src="{{ asset('download.png') }}" alt="Upvote" />
             </button>
 
+        </div>
+        @endif
     </div>
-    @endif
-
+</div>
 </div>
 {{-- ШАГ 3 -> web.php строка 56--}}
 @if (Auth::check())
@@ -148,7 +116,7 @@
     @csrf
     <input required pattern=".*\S+.*" type="text" name="text_content">
     {{-- вводим значения переменной text_content для запроса--}}
-    <button type="submit" style="color: black;">
+    <button type="submit" class="basic-btn ">
         Отправить комментарий!
     </button>
 </form>
@@ -170,7 +138,7 @@
             @csrf
             @method('DELETE')
             <button type="submit" style="color: red;">
-              x
+                x
             </button>
         </form>
     </h3>
@@ -181,6 +149,8 @@
 </div>
 @endforeach
 @else
-<p>No comments</p>
+<div class="noPost">
+    <p>No comments</p>
+</div>
 @endunless
 @endsection

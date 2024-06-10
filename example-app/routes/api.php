@@ -7,12 +7,20 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\PostLikesController;
 
-
+Route::post('/post/{id}/like', [PostLikesController::class, 'apistore']);
+Route::delete('/post/{id}/dislike', [PostLikesController::class, 'apidestroy']);
+Route::get('/post/{id}/userrate', [PostLikesController::class, 'apirate']);
+Route::delete('/post/{id}/delete', [PostController::class, 'apidestroy']);
+Route::post('/post/create', [PostController::class, 'apistore']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 
 Route::get('/user/{id}', function (string $id) {
     return response()->json(User::findOrFail($id));

@@ -60,4 +60,33 @@ class PostController extends Controller
         }
         return Redirect::to('/posts'); // Аналогичен вызову пути выше
     }
+
+    public function apistore(Request $request)
+    {
+        $user = $request->user('api');
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        $post = Post::create([ //создает в бд новую запись с id = id+1 от послднего и заполняет остальные поля
+            'title' => $request->header('title'),
+            'text_content' => $request->header('text_content'),
+            'user_id' => $user->id,
+        ]);
+    }
+
+
+    public function apidestroy(Request $request) //DELETE запрос
+    {
+        $user = $request->user('api');
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        $post = Post::find($request->id);
+        if ($post && (($post->user_id == $user->id) or ($user->is_admin))) {
+            $post->delete();
+        }
+    }
 }

@@ -45,9 +45,6 @@ Route::get('/', [PostsController::class, 'index'])->name('main')->middleware(['a
 //Перейти в профиль
 Route::get('/dashboard', [ProfileController::class, 'edit'])->middleware(['auth', 'verified'])->name('dashboard');    // перед этим проверит залогинен ли пользователь
 
-
-
-
 //Создать и удалить пост
 Route::get('createpost', [PostController::class, 'create']) // GET запрос по адресу /createpost,
     ->name('post.createpost');                              // выполнит функцию create класса PostController

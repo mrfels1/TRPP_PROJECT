@@ -1,7 +1,6 @@
 Коллабораторы: 
 MrFels1 - Дмитрий Хакимов;
 BloodMistress - Алина Миронова;
-https://miro.com/app/board/uXjVKfZV_j0=/
 
 Запуск проекта:
 1. Создайте контейнер: `docker-compose build`
@@ -28,5 +27,3 @@ https://miro.com/app/board/uXjVKfZV_j0=/
 - "laravel/tinker": "^2.9",
 - "laravel/ui": "^4.5",
 - "tartanlegrand/laravel-openapi": "^1.13"
-
-https://www.youtube.com/watch?v=fm5vVlfo1Xg

@@ -13,6 +13,8 @@ BloodMistress - Алина Миронова;
 8. Проведите миграцию: `php artisan migrate --seed`
 9. Запустите проект: `php artisan serve`
 
+По умолчанию создаться пользователь админ логин dimas9.00@mail.ru пароль 123321
+
 Генерация документации: `php artisan openapi:generate`
 
 Зависимости:
